@@ -1,0 +1,213 @@
+header{
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+}
+.main-header-top{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+.navbar-brand {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 15px 0;
+    max-width: 50%;
+    position: relative;
+    z-index: 5;
+    height: 63px;
+    width: 63px;
+}
+.main-header-top h2{
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+.navbar-brand img{
+    width: 100%;
+    height: 100%;
+}
+.div-searchbar{
+    position: relative;
+    display: inline-block;
+    width: 450px;
+    height: 40px;
+    max-width: 350px;
+    vertical-align: middle;
+    z-index: 4;
+    margin: auto 0;
+    /* margin-left: 144px; */
+    margin-left: 600px;
+
+    color: #8d8d8d;
+    border-radius: 20px;
+    border: 1px solid #dbe0e2;
+    overflow: hidden;
+}
+.div-searchbar form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.div-searchbar input[type="text"]{
+    height: 100%;
+    padding: 6px 50px 8px 20px;
+    border: none;
+    border-right: solid 1px rgb(177, 177, 177);
+    background: #eeeeee;
+    color: #8d8d8d;
+}
+.div-searchbar span{
+    display: inline-block;
+    height: 100%;
+    width: 50px;
+    padding: 6px 50px 8px 30px;
+    /* border: solid 1px rgb(177, 177, 177); */
+    background: #eeeeee;
+}
+.cart{
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    right: 15px;
+    width: 73px;
+    height: 41px;
+    background-color: transparent;
+    font-size: 25px;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+    margin-top: -20px;
+}
+.cart a{
+    color: #333e48;
+}
+.cart-count{
+    display: block;
+    position: absolute;
+    width: 16px;
+    min-width: auto;
+    height: 16px;
+    top: 50%;
+    right: 13px;
+    left: auto;
+    padding: 0 3px;
+    white-space: normal;
+    font-weight: 600;
+    
+    margin: -11px 0 0;
+    margin-top: -17px;
+    font-size: 10px;
+    color: #fff;
+    background-color: #ed5348;
+    text-align: center;
+    line-height: 17px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.count-number{
+    font-size: 10px;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    line-height: 17px;
+    vertical-align: top;
+}
+.header-bottom-nav{
+    background: #51aa1b;
+}
+.navbar_style{
+    color: #fff;
+}
+.navbar-toggler-icon{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    z-index: 10;
+}
+.navItem_a_style{
+    color: #fff;
+    text-decoration: none;
+    /* font-family: 'Oswald'; */
+    font-size: 14px;
+    letter-spacing: 0.025em;
+    /* font-weight: 500; */
+    padding: 0 12px 0 0;
+    line-height: 30px;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+}
+.navItem_a_style::after{
+    content: '';
+    display: inline-block;
+    font-family: 'porto-icons';
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+
+@media (max-width: 767px){
+    .main-header-top{
+        flex-direction: column;
+    }
+    .navbar-brand{
+        height: 40px;
+        float: left;
+        margin: 10px 0;
+    }
+    
+    .cart{
+        top: 30px;
+        right: 60px;
+        width: 73px;
+        height: 41px;
+        font-size: 25px;
+        margin-top: -20px;
+    }
+}
+
+@media (max-width: 575.98px){
+    .main-header-top h2{
+        display: none;
+    }
+    .navbar-brand {
+        vertical-align: unset;
+        margin: 5px 0 0;
+        max-width: 50%;
+        position: relative;
+        z-index: 5;
+        height: 50px;
+        width: 50px;
+    }
+    .div-searchbar{
+        margin: 10px auto 10px;
+    }
+    .header-bottom-nav{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 0;
+        width: 60px;
+        height: 52px;
+        background: #51aa1b;
+    }
+    .navbar-toggler{
+        padding: 0;
+    }
+    .navbar-toggler-icon{
+        color: #fff;
+        font-size: 18px;
+        z-index: 10;
+    }
+}
+
+@media (min-width: 1200px) { 
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1250px;
+    }
+}
