@@ -1,0 +1,9 @@
+.row-product-img{
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+.row-product-img img{
+    width: 100%;
+    height: 100%;
+}

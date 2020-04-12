@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProductListComponent } from './admin/product/product-list/product-list.component';
+import { ProductAddComponent } from './admin/product/product-add/product-add.component';
 
 
 const routes: Routes = [
@@ -21,7 +23,12 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'productList', pathMatch: 'full'},
+      { path: 'productList', component: ProductListComponent},
+      { path: 'productAdd', component: ProductAddComponent}
+    ]
   }
 ];
 

@@ -1,50 +1,33 @@
 <div class="mainDiv">
-    <div class="container-fluid mt-3">
+    <div class="container-fluid ">
         <div class="row">
-            <div class="col-lg-2">
-                navi
+            <div class="col-lg-2 side-navigation">
+                <h5>Navigation</h5>
+                <ul>
+                    <li>
+                        Product
+                        <ul>
+                            <li><a [routerLink]="['productList']" routerLinkActive="router-link-active"> Product List</a></li>
+                            <li><a [routerLink]="['productAdd']" routerLinkActive="router-link-active" >Product Add</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Customer
+                        <ul>
+                            <li><a [routerLink]="['customer']" routerLinkActive="router-link-active" >Request</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Arrange
+                        <ul>
+                            <li>Home</li>
+                            <li>Shopping</li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="col-lg-10">
-                <form action="" method="POST" class="form">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="">Category</label>
-                                <input type="text" [(ngModel)]="addProductDetails['pCategory']" name="pCategory" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Product name</label>
-                                <input type="text" [(ngModel)]="addProductDetails['pName']" name="pName" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Product price</label>
-                                <input type="text" [(ngModel)]="addProductDetails['pPrice']" name="pPrice" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Discount</label>
-                                <input type="text" [(ngModel)]="addProductDetails['pDiscount']" name="pDiscount" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Quantity</label>
-                                <input type="text" [(ngModel)]="addProductDetails['pQty']" name="pQty" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-lg">
-                                <input type="file" ng-model="files" class="hide"  #file accept='image/*' (change)="preview(file.files)" (change)="onFileSelected($event)"> 
-                                <button type="button" (click)="file.click()" class="btn btn-info">Pick Photo</button>
-                                <button type="button" (click)="onUpload()" class="hide">Upload</button>
-                                <!-- <input type="file" ng-model="files" #fileInput>
-                                <button (click)="onFileUpload()">upload</button> -->
-                            </div>
-                            <div class="col-lg">
-                                <span style="color:red;" *ngIf="message">{{message}}</span>
-                                <img [src]="imgURL" height="200" *ngIf="imgURL">
-                            </div>
-                        </div>
-                    </div>
-                    <button (click)="addProduct()"  type="button" class="btn btn-primary " >Add Product</button>
-                </form>
+            <div class="col-lg-10 admin-pannel">
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

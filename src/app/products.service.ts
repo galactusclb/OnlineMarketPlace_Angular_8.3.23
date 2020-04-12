@@ -10,6 +10,7 @@ export class ProductsService {
 
   private _getItemsUrl = this.url+"getItems";
   private _getMainCategoryProductsUrl = this.url+"getMainCategoryProducts";
+  private _getAllProductsUrl = this.url+"getAllProducts";
   private _addProductUrl = this.url+"addProduct";
   private _uploadProductImgUrl = this.url+"profile"
 
@@ -17,6 +18,9 @@ export class ProductsService {
 
   getMainCategoryProducts(category){
     return this.http.get<any> (this._getMainCategoryProductsUrl,{ params : { category : category }})
+  }
+  getAllProducts(){
+    return this.http.get<any> ( this._getAllProductsUrl)
   }
   getItems(shop){
     return this.http.get<any> (this._getItemsUrl,{ params : { category : shop }})

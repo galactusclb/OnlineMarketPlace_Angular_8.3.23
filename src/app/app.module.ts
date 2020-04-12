@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ShoppingComponent } from './shopping/shopping.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProductAddComponent } from './admin/product/product-add/product-add.component';
+import { ProductListComponent } from './admin/product/product-list/product-list.component';
 
 //servicess
 import { ProductsService } from './products.service';
@@ -18,7 +20,9 @@ import { ProductsService } from './products.service';
     AppComponent,
     HomeComponent,
     ShoppingComponent,
-    AdminComponent
+    AdminComponent,
+    ProductListComponent,
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+.side-navigation{
+    min-height: calc(100vh - 64px);
+    background: #181824;
+    padding-top: 20px;
+    color: #8e94a9;
+}
+.side-navigation ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+.admin-pannel{
+    padding-top: 20px;
+}
