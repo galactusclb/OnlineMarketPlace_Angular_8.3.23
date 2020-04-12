@@ -35,9 +35,9 @@
             <div class="col-lg">
                 <div class="pl-3 pr-3 pb-3"> 
                     <div class="category-row">
-                        <div class="col-md-6 col-lg-3 product-card">
+                        <div class="col-md-6 col-lg-3 product-card" *ngFor="let product of products">
                             <div class="xs-product-category">
-                                <div class="xs-product-category-bg">
+                                <div class="xs-product-category-bg" *ngIf="product['discount'] > 0">
                                     <span>Save Rs.500</span>
                                 </div>
                                 <div class="make-heart">
@@ -46,182 +46,22 @@
                                 </div>
                                 
                                 <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-253x200.jpg" alt="Delmonico Steak"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
+                                    <!-- <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-253x200.jpg" alt="Delmonico Steak"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true"> -->
+                                    <img src="http://localhost:3000/api/uploads/products/{{product['pic']}}" alt="" srcset="">
                                 </div>
                                 <p class="product-title">
-                                    Delmonico Steak
+                                    {{product['name']}}
                                 </p>
                                 <span class="price">
-                                    <del>$140.00</del> 
-                                    <span class="current-price">$130.00</span>
+                                    <del *ngIf="product['discount'] > 0 ">Rs.{{product['discount']}}.00</del> 
+                                    <span class="current-price">Rs.{{product['price']}}.00</span>
                                 </span>
                                 <div class="product-add-to-cart">
                                     <!-- <label>Qty : </label> -->
                                     <span class="">
-                                        <input type="hidden" class="max-value" value="20">
+                                        <input type="hidden" class="max-value" value="{{product['qty']}}">
                                         <input type="button" class="minus" value="-">
                                         <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/14-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Orange Navel Lane Late
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$30.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="21">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="2" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/13-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Meadow Fresh Milk
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$55.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="22">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="3" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/11-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Orange Navel Lane Late
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$30.00</span>
-                                    -
-                                    <span class="current-price">$250.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="22">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="3" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/11-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Orange Navel Lane Late
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$30.00</span>
-                                    -
-                                    <span class="current-price">$250.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="22">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="3" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/11-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Orange Navel Lane Late
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$30.00</span>
-                                    -
-                                    <span class="current-price">$250.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="22">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="3" readonly>
                                         <input type="button" class="plus" value="+">
                                     </span>
                                 </div>

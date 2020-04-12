@@ -420,147 +420,139 @@
                         </div>
                     </div>
                 </div>
-                <div class="pl-3 pr-3 pb-3">             
-                    <h4 class="row-title mb-3 category-row-title">
-                        Beauty & Health
-                        <a [routerLink]="['/shopping']" [queryParams]="{ shop : 'beautyandhealth' }" >click here to see more</a>
-                    </h4>
-                    <div class="row category-row">
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="xs-product-category-bg hide">
-                                    <span>Save Rs.500</span>
-                                </div>
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
+
+                
+
+                <ng-container *ngFor="let category of products">
+                    <div class="pl-3 pr-3 pb-3" *ngIf="category.length > 0">                                  
+                        <h4 class="row-title mb-3 category-row-title">
+                            <!-- Beauty & Health  -->
+                            {{category[0].category}}
+                            <a [routerLink]="['/shopping']" [queryParams]="{ shop : 'beautyandhealth' }" >click here to see more</a>
+                        </h4>
+                        <div class="row category-row" >
+                            <div class="col-md-6 col-lg-3 product-card" *ngFor="let item of category" >
+                                <div class="xs-product-category">
+                                    <div class="xs-product-category-bg " *ngIf="item['discount'] > 0">
+                                        <span>Save Rs.{{item['discount']}}</span>
+                                    </div>
+                                    <div class="make-heart">
+                                        <i class="far fa-heart remove-heart block"></i>
+                                        <i class="fas fa-heart  heart hide"></i>
+                                    </div>
+                                    
+                                    <div class="product-img-box">
+                                        <img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt="Delmonico Steak"   class="lazyloaded" data-was-processed="true">
+                                    </div>
+                                    <p class="product-title">
+                                        {{item['name']}}
+                                    </p>
+                                    <span class="price">
+                                        <del *ngIf="item['discount'] > 0">Rs.{{item['price']}}.00</del> 
+                                        <span class="current-price">Rs.{{item['discount']}}.00</span>
+                                    </span>
+                                    <div class="product-add-to-cart">
+                                        <!-- <label>Qty : </label> -->
+                                        <span class="">
+                                            <input type="hidden" class="max-value" value="{{item['qty']}}">
+                                            <input type="button" class="minus" value="-">
+                                            <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
+                                            <input type="button" class="plus" value="+">
+                                        </span>
+                                    </div>
+                                    <label class="add-to-cart-button">
+                                        <i class="fab fa-opencart"></i>
+                                        <input type="button" value="Add to cart">
+                                    </label>
                                 </div>
                                 
-                                <div class="product-img-box">
-                                    <img src="../../assets/img/kisspng-cleanser-a-s-watson-group-watsons-two-men-cleanser-carbon-cool-5aa1b2dedcf006.855757471520546526905.png" alt="Delmonico Steak"   class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <p class="product-title">
-                                    Delmonico Steak
-                                </p>
-                                <span class="price">
-                                    <del>$140.00</del> 
-                                    <span class="current-price">$130.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="20">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="xs-product-category-bg ">
-                                    <span>Save Rs.500</span>
-                                </div>
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="../../assets/img/kisspng-lotion-toner-cosmetics-skin-care-5ae45215311cc1.1665249615249126612012.png" alt="Orange Navel Lane Late"   class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Orange Navel Lane Late
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$30.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="21">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="2" readonly>
-                                        <input type="button" class="plus" value="+">
+                            <div class="col-md-6 col-lg-3 product-card">
+                                <div class="xs-product-category">
+                                    <div class="xs-product-category-bg hide">
+                                        <span>Save Rs.500</span>
+                                    </div>
+                                    <div class="make-heart">
+                                        <i class="far fa-heart remove-heart block"></i>
+                                        <i class="fas fa-heart  heart hide"></i>
+                                    </div>
+                                    
+                                    <div class="product-img-box">
+                                        <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-253x200.jpg" alt="Delmonico Steak"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
+                                    </div>
+                                    <p class="product-title">
+                                        Delmonico Steak
+                                    </p>
+                                    <span class="price">
+                                        <del>$140.00</del> 
+                                        <span class="current-price">$130.00</span>
                                     </span>
+                                    <div class="product-add-to-cart">
+                                        <!-- <label>Qty : </label> -->
+                                        <span class="">
+                                            <input type="hidden" class="max-value" value="20">
+                                            <input type="button" class="minus" value="-">
+                                            <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
+                                            <input type="button" class="plus" value="+">
+                                        </span>
+                                    </div>
+                                    <label class="add-to-cart-button">
+                                        <i class="fab fa-opencart"></i>
+                                        <input type="button" value="Add to cart">
+                                    </label>
                                 </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/13-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Meadow Fresh Milk
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$55.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="22">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="3" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3 product-card">
-                            <div class="xs-product-category">
-                                <div class="make-heart">
-                                    <i class="far fa-heart remove-heart block"></i>
-                                    <i class="fas fa-heart  heart hide"></i>
-                                </div>
-                                <div class="product-img-box">
-                                    <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/11-min-253x200.jpg" alt="Orange Navel Lane Late"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                </div>
-                                <h4 class="product-title">
-                                    Orange Navel Lane Late
-                                </h4>
-                                <span class="price">
-                                    <del class="hide">$140.00</del> 
-                                    <span class="current-price">$30.00</span>
-                                    -
-                                    <span class="current-price">$250.00</span>
-                                </span>
-                                <div class="product-add-to-cart">
-                                    <!-- <label>Qty : </label> -->
-                                    <span class="">
-                                        <input type="hidden" class="max-value" value="22">
-                                        <input type="button" class="minus" value="-">
-                                        <input type="number" id="value" class="cart-value" min="0" max="100" value="3" readonly>
-                                        <input type="button" class="plus" value="+">
-                                    </span>
-                                </div>
-                                <label class="add-to-cart-button">
-                                    <i class="fab fa-opencart"></i>
-                                    <input type="button" value="Add to cart">
-                                </label>
                             </div>
                         </div>
                     </div>
-                </div>
+                </ng-container>
+
+
+                <!-- <div class="pl-3 pr-3 pb-3">             
+                    <h4 class="row-title mb-3 category-row-title">
+                        Home & Kitchen
+                        <a [routerLink]="['/shopping']" [queryParams]="{ shop : 'homeAndKitchen' }" >click here to see more</a>
+                    </h4>
+                    <div class="row category-row">
+                        <ng-container *ngFor="let i of [].constructor(3)">
+                            <div class="col-md-6 col-lg-3 product-card">
+                                <div class="xs-product-category">
+                                    <div class="xs-product-category-bg hide">
+                                        <span>Save Rs.500</span>
+                                    </div>
+                                    <div class="make-heart">
+                                        <i class="far fa-heart remove-heart block"></i>
+                                        <i class="fas fa-heart  heart hide"></i>
+                                    </div>
+                                    
+                                    <div class="product-img-box">
+                                        <img src="../../assets/img/kisspng-cleanser-a-s-watson-group-watsons-two-men-cleanser-carbon-cool-5aa1b2dedcf006.855757471520546526905.png" alt="Delmonico Steak"   class="lazyloaded" data-was-processed="true">
+                                    </div>
+                                    <p class="product-title">
+                                        Delmonico Steak
+                                    </p>
+                                    <span class="price">
+                                        <del>$140.00</del> 
+                                        <span class="current-price">$130.00</span>
+                                    </span>
+                                    <div class="product-add-to-cart">
+                                        <label>Qty : </label>
+                                        <span class="">
+                                            <input type="hidden" class="max-value" value="20">
+                                            <input type="button" class="minus" value="-">
+                                            <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
+                                            <input type="button" class="plus" value="+">
+                                        </span>
+                                    </div>
+                                    <label class="add-to-cart-button">
+                                        <i class="fab fa-opencart"></i>
+                                        <input type="button" value="Add to cart">
+                                    </label>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div> -->
+
                 <div class="pl-3 pr-3 pb-3">             
                     <h4 class="row-title mb-3 category-row-title">
                         Home & Kitchen
