@@ -13,10 +13,11 @@
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Quantity</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of productList">
+                        <tr *ngFor="let item of productList" [routerLink]="['/admin/productView']" [queryParams]="{ id : item['id'] }" >
                             <td>{{item['id']}}</td>
                             <td class="row-product-img"><img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt=""></td>
                             <td>{{item['name']}}</td>

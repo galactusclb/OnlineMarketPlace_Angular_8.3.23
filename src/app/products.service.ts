@@ -9,12 +9,14 @@ export class ProductsService {
   url:string = "http://localhost:3000/api/"
 
   private _getItemsUrl = this.url+"getItems";
+  private _getProductDetailsUrl = this.url+"getProductDetails";
   private _getMainCategoryProductsUrl = this.url+"getMainCategoryProducts";
   private _getAllProductsUrl = this.url+"getAllProducts";
   private _addProductUrl = this.url+"addProduct";
   private _removeProductFromHomeUrl = this.url+"removeProductFromHome"
   private _addMainCategoryProductsUrl = this.url+"addMainCategoryProducts";
   private _uploadProductImgUrl = this.url+"profile"
+  private _productsOrderUrl = this.url+"productsOrder"
 
   constructor( private http: HttpClient) { }
 
@@ -26,6 +28,9 @@ export class ProductsService {
   }
   getItems(shop){
     return this.http.get<any> (this._getItemsUrl,{ params : { category : shop }})
+  }
+  getProductDetails(id){
+    return this.http.get<any> (this._getProductDetailsUrl,{ params : { productId : id }})
   }
   addProduct(details){
     return this.http.post<any>( this._addProductUrl,details , {
@@ -45,6 +50,11 @@ export class ProductsService {
       reportProgress : true,
       observe: 'events'
     })
+  }
+
+
+  productsOrder(details){
+    return this.http.post<any> ( this._productsOrderUrl , details);
   }
 
 
