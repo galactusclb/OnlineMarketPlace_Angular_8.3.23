@@ -1,14 +1,14 @@
+/* .mainDiv {
+    padding-top: 10px !important;
+} */
 .row-product-img{
-    width: 60px;
-    height: 60px;
+    width:  55px;
+    height: 55px;
     overflow: hidden;
 }
 .row-product-img img{
     width: 100%;
     height: 100%;
-}
-.margin-auto{
-    margin: 0 auto;
 }
 .borderShadow{
     border-radius: .75rem;
@@ -65,4 +65,11 @@
 .text-muted {
     color:#797979 !important;
     font-size: 14px;
+}
+.btn-delete{
+    color: #fff;
+    cursor: pointer;
+}
+.btn-delete i{
+    cursor: pointer;
 }

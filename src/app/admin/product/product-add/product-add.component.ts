@@ -12,6 +12,9 @@ export class ProductAddComponent implements OnInit {
   addProductDetails = {}
 
   selectedFile:File = null;
+  public imagePath;
+  imgURL: any;
+  public message: string;
 
   constructor(private _product : ProductsService) { }
 
@@ -32,13 +35,15 @@ export class ProductAddComponent implements OnInit {
             if(event.type === HttpEventType.UploadProgress){
               console.log('Upload Progress : '+ Math.round(event.loaded / event.total *100 ) + '%')
             }else if (event.type === HttpEventType.Response) {
-              console.log(event)
+              console.log(event);
+              this.addProductDetails = {};
+              this.imgURL = null;
             }
           },
           err=> console.log(err)
         )
     } else {
-        console.log("Pick a photo!")
+        this.message = 'Pick a photo!'
     } 
 }
 
@@ -62,9 +67,7 @@ export class ProductAddComponent implements OnInit {
         err => console.log(err)
       )
 }
-public imagePath;
-imgURL: any;
-public message: string;
+
 
   preview(files) {
       if (files.length === 0)

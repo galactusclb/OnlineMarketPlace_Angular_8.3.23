@@ -10,18 +10,20 @@ import { ProductsService } from '../products.service';
 })
 export class HomeComponent implements OnInit {
 
-  // category = ['grocery','pets']
-  category:string = 'pets'
+  category = ['grocery','pets']
+  //category:string = 'pets'
   products = []
 
   constructor(private _products: ProductsService) { }
 
   ngOnInit() {
     $.getScript('../../assets/js/custom.js');
+    
+    // this.getMainCategoryProducts(this.category)
 
-    //for (let i = 0; i < this.category.length; i++) {
-      this.getMainCategoryProducts(this.category)
-    //}
+    for (let i = 0; i < this.category.length; i++) {
+      this.getMainCategoryProducts(this.category[i])
+    }
   }
 
 
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
     this._products.getMainCategoryProducts(category)
       .subscribe(
         res=> {
-          this.products.push(res)
+          this.products.push(res);
           console.log(this.products)
         },
         err=> console.log(err)

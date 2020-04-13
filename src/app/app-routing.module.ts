@@ -5,6 +5,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProductListComponent } from './admin/product/product-list/product-list.component';
 import { ProductAddComponent } from './admin/product/product-add/product-add.component';
+import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'productList', pathMatch: 'full'},
       { path: 'productList', component: ProductListComponent},
-      { path: 'productAdd', component: ProductAddComponent}
+      { path: 'productAdd', component: ProductAddComponent},
+      { path: 'editHome', component: EditHomeComponent}
     ]
   }
 ];

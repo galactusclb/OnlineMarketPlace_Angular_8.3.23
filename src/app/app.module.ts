@@ -11,6 +11,7 @@ import { ShoppingComponent } from './shopping/shopping.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProductAddComponent } from './admin/product/product-add/product-add.component';
 import { ProductListComponent } from './admin/product/product-list/product-list.component';
+import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.component';
 
 //servicess
 import { ProductsService } from './products.service';
@@ -22,7 +23,8 @@ import { ProductsService } from './products.service';
     ShoppingComponent,
     AdminComponent,
     ProductListComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    EditHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -2,26 +2,26 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-lg-2 side-navigation">
-                <h5>Navigation</h5>
-                <ul>
-                    <li>
-                        Product
-                        <ul>
-                            <li><a [routerLink]="['productList']" routerLinkActive="router-link-active"> Product List</a></li>
-                            <li><a [routerLink]="['productAdd']" routerLinkActive="router-link-active" >Product Add</a></li>
+                <h5 class="ml-4">Navigation</h5>
+                <ul class="side-navi-top" id="metismenu">
+                    <li class="mm-active" >
+                        <a class="has-arrow" aria-expanded="true"> Product </a>
+                        <ul class="side-navi-second">
+                            <li><a [routerLink]="['productList']" routerLinkActive="side-navi-second-li"> Product List</a></li>
+                            <li><a [routerLink]="['productAdd']" routerLinkActive="side-navi-second-li" >Product Add</a></li>
                         </ul>
                     </li>
                     <li>
-                        Customer
-                        <ul>
-                            <li><a [routerLink]="['customer']" routerLinkActive="router-link-active" >Request</a></li>
+                        <a class="has-arrow" aria-expanded="true">Customer</a>
+                        <ul class="side-navi-second">
+                            <li><a [routerLink]="['customer']" routerLinkActive="side-navi-second-li" >Request</a></li>
                         </ul>
                     </li>
                     <li>
-                        Arrange
-                        <ul>
-                            <li>Home</li>
-                            <li>Shopping</li>
+                        <a class="has-arrow" aria-expanded="true">Appearance</a>
+                        <ul class="side-navi-second">
+                            <li><a [routerLink]="['editHome']" routerLinkActive="side-navi-second-li" >Home</a></li>
+                            <li><a [routerLink]="['customer']" routerLinkActive="side-navi-second-li" >Shopping</a></li>
                         </ul>
                     </li>
                 </ul>

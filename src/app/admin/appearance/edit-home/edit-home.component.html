@@ -1,0 +1,57 @@
+<div class="row ">
+    <div class="col-lg-12">
+        <button type="button " class="btn btn-success float-right" (click)="addProdcutDiv()">
+            <i class="fas fa-plus" *ngIf="!status"></i>
+            <i class="fas fa-times" *ngIf="status"></i>
+        </button>
+    </div>
+</div>
+<div class="col-lg-6" *ngIf="status">
+    <h4>Add product to home </h4>
+    <form method="post" class="form">
+        <div class="form-group">
+            <label for="">Category</label>
+            <input type="text" [(ngModel)]="prodcutDetails['pCategory']" name="category" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Product ID</label>
+            <input type="number" [(ngModel)]="prodcutDetails['pId']" name="id" class="form-control">
+        </div>
+        <button class="btn btn-success" (click)="addMainCategoryProducts()">Add</button>
+    </form>
+</div>
+<div class="row mt-4">
+    <div class="col-xl-6" *ngFor="let category of products">
+        <div class="card-box borderShadow">
+           <h4 class="header-title mb-4">{{category[0].category}}</h4>
+           <div class="table-responsive">
+                <table class="table table-hover table-centered m-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Quantity</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of category">
+                            <td>{{item['id']}}</td>
+                            <td class="row-product-img"><img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt=""></td>
+                            <td>{{item['name']}}</td>
+                            <td>{{item['category']}}</td>
+                            <td>{{item['price']}}</td>
+                            <td>{{item['discount']}}</td>
+                            <td>{{item['qty']}}</td>
+                            <th><button type="button" class="btn btn-warning btn-delete" (click)="removeProductFromHome(item['id'])"><i class="far fa-trash-alt"></i></button> </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

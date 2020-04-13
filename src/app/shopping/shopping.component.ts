@@ -13,6 +13,7 @@ export class ShoppingComponent implements OnInit {
   products = []
 
   shopType:any;
+  shopTypeTitle:any ;
 
   constructor(private Activatedroute:ActivatedRoute, private _product:ProductsService ) { }
 
@@ -25,7 +26,8 @@ export class ShoppingComponent implements OnInit {
       this.Activatedroute.queryParams.subscribe(queryParams => {
         this.shopType = queryParams['shop'];
         this.getitems(this.shopType);
-        console.log(this.shopType)
+        this.shopTypeTitle =  this.shopType.split(/(?=[A-Z])/).join(" ");
+        // console.log(this.shopTypeTitle)
       });
   }
 

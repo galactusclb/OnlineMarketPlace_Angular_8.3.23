@@ -12,6 +12,8 @@ export class ProductsService {
   private _getMainCategoryProductsUrl = this.url+"getMainCategoryProducts";
   private _getAllProductsUrl = this.url+"getAllProducts";
   private _addProductUrl = this.url+"addProduct";
+  private _removeProductFromHomeUrl = this.url+"removeProductFromHome"
+  private _addMainCategoryProductsUrl = this.url+"addMainCategoryProducts";
   private _uploadProductImgUrl = this.url+"profile"
 
   constructor( private http: HttpClient) { }
@@ -30,6 +32,13 @@ export class ProductsService {
       reportProgress : true,
       observe: 'events'
     })
+  }
+  addMainCategoryProducts(product){
+    return this.http.post<any>(this._addMainCategoryProductsUrl,product);
+  }
+  removeProductFromHome(id){
+    console.log('delete this '+ id)
+    return this.http.post<any>(this._removeProductFromHomeUrl, { params : { item : id }})
   }
   uploadProductImg(img){
     return this.http.post<any>( this._uploadProductImgUrl, img , {
