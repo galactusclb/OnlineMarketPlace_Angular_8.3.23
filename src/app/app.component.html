@@ -14,10 +14,17 @@
         <i class="fab fa-opencart"></i>
         <span class="cart-count">
           <span class="count-number">
-            0
+            {{cartItemCount}}
           </span>
         </span>
       </a>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <span *ngFor="let item of message">
+          {{item['text']}}
+        </span>
+      </div>
     </div>
   </div>
   <div class="container-flude header-bottom-nav">

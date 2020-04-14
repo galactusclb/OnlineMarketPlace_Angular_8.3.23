@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/products.service';
+import { CartService } from 'src/app/cart.service';
 
 @Component({
   selector: 'app-product-view',
@@ -10,8 +11,8 @@ import { ProductsService } from 'src/app/products.service';
 export class ProductViewComponent implements OnInit {
 
   productId:string;
-
-  constructor(private Activatedroute:ActivatedRoute, private _product: ProductsService) { }
+  bool:boolean = false;
+  constructor(private Activatedroute:ActivatedRoute, private _product: ProductsService, private _cart:CartService) { }
 
   ngOnInit() {
     this.Activatedroute.queryParams.subscribe(queryParams => {
@@ -26,5 +27,27 @@ export class ProductViewComponent implements OnInit {
           res=>console.log(res),
           err=>console.log(err)
         )
+  }
+
+
+
+
+  sendMessage(): void {
+    // send message to subscribers via observable subject
+    this._cart.sendMessage('Message from Home Component to App Component!');
+}
+
+  clearMessages(): void {
+    // clear messages
+    this._cart.clearMessages();
+}
+
+  changeGV(){
+    this.bool = !this.bool;
+    this._cart.setMyGV(this.bool);
+  }
+
+  showGV(){
+    alert("GV: " + this._cart.getMyGV());
   }
 }
