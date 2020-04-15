@@ -34,10 +34,16 @@ export class ShoppingComponent implements OnInit {
         this.shopType = queryParams['shop'];
         this.getitems(this.shopType);
         this.shopTypeTitle =  this.shopType.split(/(?=[A-Z])/).join(" ");
-        // console.log(this.shopTypeTitle)
+
+        
+        // for (let i in this.productAddedTocart) {
+        //   this.productAddedTocart[i].Quantity=1;
+        // }
       });
 
       
+
+
   }
 
     getitems(shop){

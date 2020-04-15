@@ -7,6 +7,7 @@ import { ProductListComponent } from './admin/product/product-list/product-list.
 import { ProductAddComponent } from './admin/product/product-add/product-add.component';
 import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.component';
 import { ProductViewComponent } from './admin/product/product-view/product-view.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'shopping',
     component: ShoppingComponent
+  },
+  {
+    path: 'cart',
+    component: ShoppingCartComponent
   },
   {
     path: 'admin',

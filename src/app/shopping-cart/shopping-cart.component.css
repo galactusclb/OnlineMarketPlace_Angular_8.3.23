@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+
+.div-cart-left{
+    background: #f5f5f5;
+    padding: 25px 35px;
+    min-height: 500px !important;
+}
+.div-cart-right{
+    background: #e8e8e8;
+    padding: 25px 30px;
+}
+.cart-header{
+    padding: 10px 20px 20px 0;
+    border-bottom: solid 1px rgb(187, 187, 187);
+}
+.cart-header h5{
+    display: inline-block;
+    margin: 0;
+}
+.cart-header span,.cart-header i{
+    cursor: pointer;
+}
+.item-row{
+   margin-top: 30px; 
+}
+.empty-cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.empty-cart label,h5{
+    display: block;
+}
+.empty-cart label a{
+    text-decoration: underline;
+    color: #83b735;
+    margin: 0 3px;
+    cursor: pointer;
+}
+.prod{
+    padding: 15px 10px;
+    font-family: 'Francois One', sans-serif;
+}
+.prod-img {
+    display: flex;
+    justify-content: center;
+}
+.prod-img img{
+    max-width: 110px !important;
+}
+.prod-info{
+    font-size: 17px;
+}
+.prod-price{
+    color: #6e6e6e;
+}
+.summary-line{
+    padding: 5px 0;
+}
+.totCost-text{
+    font-weight: 600;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+.btn-proceed{
+    width: 100%;
+    padding: 17px 15px;
+    border-radius: 5px;
+    border: 0;
+    background: #282828;
+    color: #fff;
+    font-size: 13px;
+}

@@ -51,6 +51,12 @@ export class CartService {
   addProductToCart(prodcuts: any) {
     localStorage.setItem("product", JSON.stringify(prodcuts));
   }
+  getProductFromCart() {
+    return JSON.parse(localStorage.getItem('product'));
+  }
+  removeAllProductFromCart(){
+    localStorage.removeItem("product");
+  }
   getCartCount(){
     let count = 0;
     console.log(this.getProductFromCart())
@@ -63,7 +69,5 @@ export class CartService {
   updateCartCount(count: number) {
     this.currentCartCount.next(count)
   }
-  getProductFromCart() {
-    return JSON.parse(localStorage.getItem('product'));
-  }
+  
 }

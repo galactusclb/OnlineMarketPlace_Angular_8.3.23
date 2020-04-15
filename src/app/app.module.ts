@@ -13,9 +13,11 @@ import { ProductAddComponent } from './admin/product/product-add/product-add.com
 import { ProductListComponent } from './admin/product/product-list/product-list.component';
 import { ProductViewComponent } from './admin/product/product-view/product-view.component';
 import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 //servicess
 import { ProductsService } from './products.service';
+import { CartService } from './cart.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ProductsService } from './products.service';
     ProductListComponent,
     ProductAddComponent,
     EditHomeComponent,
-    ProductViewComponent
+    ProductViewComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,7 @@ import { ProductsService } from './products.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductsService],
+  providers: [ProductsService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
