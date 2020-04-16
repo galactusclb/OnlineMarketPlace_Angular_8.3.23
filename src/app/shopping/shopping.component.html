@@ -61,9 +61,9 @@
                                     <!-- <label>Qty : </label> -->
                                     <span class="">
                                         <input type="hidden" class="max-value" value="{{product['qty']}}">
-                                        <input type="button" class="minus" value="-">
+                                        <input type="button" class="minus" value="-" (click)="cal($event )">
                                         <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
-                                        <input type="button" class="plus" value="+">
+                                        <input type="button" class="plus" value="+" (click)="cal($event )">
                                     </span>
                                 </div>
                                 <label class="add-to-cart-button">

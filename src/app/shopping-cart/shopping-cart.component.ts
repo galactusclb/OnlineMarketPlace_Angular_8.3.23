@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../Models/Product.Model';
 import { CartService } from '../cart.service';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,7 +11,7 @@ import { CartService } from '../cart.service';
 export class ShoppingCartComponent implements OnInit {
 
   productAddedTocart:Product[];
-
+  finalInfo:any ;
   cartItemCount: number ;
 
   fee:number = 40;
@@ -18,7 +19,7 @@ export class ShoppingCartComponent implements OnInit {
   totCost:number = 0;
   totFee:number = 0;
 
-  constructor(private _cart:CartService) { }
+  constructor(private _cart:CartService, private _product:ProductsService) { }
 
   ngOnInit() {
     $.getScript('../../assets/js/custom.js');
@@ -60,7 +61,7 @@ export class ShoppingCartComponent implements OnInit {
     
     this.totFee = this.totCost + this.fee;
   }
-  
+
   cal( event , id){
       let count 
 
@@ -80,7 +81,7 @@ export class ShoppingCartComponent implements OnInit {
 
           if ( max > count) {
               count = count + 1 ;
-              input.value = 
+              input.value = count;
               
               this.calcTot(id, count)
           }
@@ -89,7 +90,6 @@ export class ShoppingCartComponent implements OnInit {
 
   calcTot(id ,count){
     this.totCost = 0;
-    this.totCost= 0;
     this.totFee= 0;
 
     for (let i in this.productAddedTocart) {
@@ -105,11 +105,34 @@ export class ShoppingCartComponent implements OnInit {
 
   removeAll(){
     this.totCost = 0;
-    this.totCost= 0;
+    this.totItems = 0;
     this.totFee= 0;
+
     this._cart.removeAllProductFromCart();
     this.getCartItems();
     this._cart.updateCartCount(0);// update cart count
+  }
+
+  proceedOrder(){
+    console.log(this.productAddedTocart)
+    
+    const xd = []
+    xd.push( {cost : this.totFee } )
+
+    for (let i = 0; i < this.productAddedTocart.length; i++) {
+      xd.push( this.productAddedTocart[i] )
+    }
+
+   // this.finalInfo = { cost : this.totFee , items : this.productAddedTocart}
+    //console.log(this.productAddedTocart)
+    this._product.productsOrder(xd)
+        .subscribe(
+          res=>{
+             console.log(res)
+             this.removeAll()
+          },
+          err=>console.log(err)
+        )
   }
 }
 

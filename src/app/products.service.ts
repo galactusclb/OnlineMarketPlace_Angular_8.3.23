@@ -54,7 +54,8 @@ export class ProductsService {
 
 
   productsOrder(details){
-    return this.http.post<any> ( this._productsOrderUrl , details);
+    console.log(details)
+    return this.http.post<any> ( this._productsOrderUrl , { params : { orders : details }});
   }
 
 

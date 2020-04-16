@@ -61,11 +61,36 @@ export class ShoppingComponent implements OnInit {
     }
 
 
+    cal( event){
+      let count 
+
+      if (event.target.className == 'minus') {
+          const input = event.target.nextElementSibling
+          count = parseInt(input.value)
+          if(count != 0 ){
+              count = count - 1 ;
+              input.value = count
+            }
+      } else if(event.target.className == 'plus'){
+          const input = event.target.previousElementSibling
+          count = parseInt(input.value)
+          let max = event.target.parentElement.childNodes[0].value
+
+          if ( max > count) {
+              count = count + 1 ;
+              input.value = count;
+          }
+      }
+  }
+
+
     OnAddCart(product:Product){
         console.log(product['id'])
         
-        this.productAddedTocart=this._cart.getProductFromCart();
+        console.log(product)
 
+        
+        this.productAddedTocart=this._cart.getProductFromCart();
         if (this.productAddedTocart == null) {
             this.productAddedTocart = []
             this.productAddedTocart.push(product)
@@ -82,7 +107,6 @@ export class ShoppingComponent implements OnInit {
         }
 
         this.cartItemCount = this.productAddedTocart.length
-        console.log(this.cartItemCount)
         this._cart.updateCartCount(this.cartItemCount);
     }
 }
