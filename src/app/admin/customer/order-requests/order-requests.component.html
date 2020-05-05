@@ -1,0 +1,54 @@
+<div class="row mt-4">
+    <div class="col-xl-8 margin-auto">
+        <div class="card-box borderShadow">
+           <h4 class="header-title mb-4">Orders</h4>
+           <div class="table-responsive">
+                <table class="table table-hover table-centered m-0">
+                    <thead>
+                        <tr>
+                            <th>Order Id</th>
+                            <th>Total Price</th>
+                            <th>Discount</th>
+                            <th>Total Item Types </th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orderList" >
+                            <td>{{item['orderTrackId']}}</td>
+                            <td>{{item['totPrice']}}</td>
+                            <td>{{item['discount']}}</td>
+                            <td>{{item['totItemsType']}}</td>
+                            <td>{{item['date']}}</td>
+                            <!-- <td>{{item['status']}}</td> -->
+                            <td>
+                                <form method="POST" action="">
+                                    <select [(ngModel)] = "item['status']" name="collector_1" >
+                                        <option value="pending">Pending</option>
+                                        <option value="accepted">Accepted</option>
+                                        <option value="decline">Decline</option>
+                                        <option value="delivered">Delivered</option>
+                                    </select>  
+                                    <!-- <button *ngIf="item['status']!=cc">Save</button> -->
+                                        <button (click)="changeStatus($event,item['sid'] )" class="btn btn-primary save-button" type="submit">Save</button>
+                                </form>
+                            </td>
+                            <th>
+                                <div class="dropdown">
+                                    <span class="drop_menu" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-v" ></i>
+                                    </span>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <button type="button" class="btn dropdown-item" [routerLink]="['/admin/orderDetails']" [queryParams]="{ trackId : item['orderTrackId'] }">Details</button>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

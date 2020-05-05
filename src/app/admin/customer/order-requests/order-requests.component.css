@@ -73,32 +73,42 @@
 
 
 
-.green{
-    display: none;
-}
 
+
+
+
+
+
+
+/* .container
+{
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-40%,-40%);
+} */
 .toggle-btn
 {
-    width:50px;
-    height:25px;
+    width:80px;
+    height:40px;
     background:gray;
     border-radius:30px;
-    padding:2px 3px;
+    padding:7px;
     transition:all 400ms ease-in-out;
 }
 .toggle-btn > .circle
 {
-    width:20px;
-    height:20px;
+    width:40px;
+    height:40px;
     background:white;
     border-radius:50%;
     transition:all 400ms ease-in-out;
 }
-.active
+.toggle-btn.active
 {
-    background:#51aa1b;
+    background:green;
 }
-.active > .circle
+.toggle-btn.active > .circle
 {
-    margin-left:25px;
+    margin-left:40px;
 }

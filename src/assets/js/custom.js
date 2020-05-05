@@ -54,29 +54,37 @@
     })
   });
 
-  $(document).ready(function(){
-    $(".minus").mousedown(function(){
-    //  var x = $(this).parent();
-    //  var y = $(this).parent()[0].children[2].value
-    //  console.log(x)
-    //  console.log(y)
-        var val =parseInt( $(this).parent()[0].children[2].value );
+  $( window ).on( "load", function(){
+    $(".make-heart").children(".heart").removeClass("hide").addClass("block");
+    $(".make-heart").children(".remove-heart").removeClass("block").addClass("hide");
+  } );
 
-        if(val != 0 ){
-          val = val - 1 ;
-          $(this).parent()[0].children[2].value = val;
-        }
-      })
-  })
+  // $(document).ready(function(){
+  //   $(".minus").mousedown(function(){
+  //   //  var x = $(this).parent();
+  //   //  var y = $(this).parent()[0].children[2].value
+  //   //  console.log(x)
+  //   //  console.log(y)
+  //       var val =parseInt( $(this).parent()[0].children[2].value );
 
-  $(document).ready(function(){
-    $(".plus").click(function(){
-      var val = parseInt($(this).parent()[0].children[2].value);
-      var max = parseInt($(this).parent()[0].children[0].value);
+  //       if(val != 0 ){
+  //         val = val - 1 ;
+  //         $(this).parent()[0].children[2].value = val;
+  //       }
+  //     })
+  // })
 
-      if (max > val) {
-        val = val + 1 ;
-        $(this).parent()[0].children[2].value = val;
-      }
-    })
-  })
+  // $(document).ready(function(){
+  //   $(".plus").click(function(){
+  //     var val = parseInt($(this).parent()[0].children[2].value);
+  //     var max = parseInt($(this).parent()[0].children[0].value);
+
+  //     if (max > val) {
+  //       val = val + 1 ;
+  //       $(this).parent()[0].children[2].value = val;
+  //     }
+  //   })
+  // })
+
+  $("#metismenu").metisMenu();
+        

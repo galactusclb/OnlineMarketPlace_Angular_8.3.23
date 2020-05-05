@@ -1,5 +1,58 @@
-<h4>{{productId}}</h4>
-<button class="btn btn-success" (click)="sendMessage()">Send</button>
+<!-- <h4>{{productId}}</h4> -->
+<!-- <button class="btn btn-success" (click)="sendMessage()">Send</button>
 <button class="btn btn-warning" (click)="clearMessages()">Clear</button>
 <button class="btn btn-success" (click)="changeGV()">sas</button>
-<button class="btn btn-warning" (click)="showGV()">mam</button>
+<button class="btn btn-warning" (click)="showGV()">mam</button> -->
+<div class="row">
+    <h4>{{productId}}</h4>
+</div>
+<div class="row">
+    <div class="col-lg-6 div-product-img">
+        <img src="http://localhost:3000/api/uploads/products/{{productDetails['pic']}}" alt="">
+    </div>
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-warning float-right">Edit</button>
+            </div>
+        </div>
+        <label for="">category</label> : 
+        {{productDetails['category']}} <br>
+        <label for="">discount</label> : 
+        {{productDetails['discount']}} <br>
+        <label for="">id</label> : 
+        {{productDetails['id']}} <br>
+        <label for="">name</label> : 
+        {{productDetails['name']}} <br>
+        <label for="">price</label> : 
+        {{productDetails['price']}} <br>
+        <label for="">qty</label> :
+        {{productDetails['qty']}} <br>
+        <label for="">Sold</label> :
+        {{productDetails['itemSold']}} <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <table>
+            <thead>
+                <tr>
+                    <th>TrackId</th>
+                    <th>Amount</th>
+                    <th>SoldPrice</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of productSoldHistoryList">
+                    <td>{{item['trackId']}}</td>
+                    <td>{{item['amount']}}</td>
+                    <td>{{item['price']}}</td>
+                    <td>{{item['date']}}</td>
+                    <td>{{item['status']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

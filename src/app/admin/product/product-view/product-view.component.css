@@ -1,0 +1,8 @@
+.div-product-img{
+    overflow: hidden;
+    height: 300px;
+}
+.div-product-img img{
+    width: 300px;
+    margin: auto 50px;
+}

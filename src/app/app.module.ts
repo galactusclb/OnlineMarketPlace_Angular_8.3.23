@@ -14,6 +14,8 @@ import { ProductListComponent } from './admin/product/product-list/product-list.
 import { ProductViewComponent } from './admin/product/product-view/product-view.component';
 import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { OrderRequestsComponent } from './admin/customer/order-requests/order-requests.component';
+import { OrderDetailsComponent } from './admin/customer/order-details/order-details.component';
 
 //servicess
 import { ProductsService } from './products.service';
@@ -29,7 +31,9 @@ import { CartService } from './cart.service';
     ProductAddComponent,
     EditHomeComponent,
     ProductViewComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderRequestsComponent,
+    OrderDetailsComponent
   ],
   imports: [
     BrowserModule,

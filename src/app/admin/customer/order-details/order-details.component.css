@@ -1,0 +1,7 @@
+.btn-print{
+    background: #2f4050;
+    color: #fff;
+}
+.btn-print:checked{
+    border: 0;
+}

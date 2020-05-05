@@ -12,6 +12,10 @@ export class ProductViewComponent implements OnInit {
 
   productId:string;
   bool:boolean = false;
+
+  productDetails = []
+  productSoldHistoryList = []
+
   constructor(private Activatedroute:ActivatedRoute, private _product: ProductsService, private _cart:CartService) { }
 
   ngOnInit() {
@@ -24,7 +28,11 @@ export class ProductViewComponent implements OnInit {
   getProductDetails(id){
     this._product.getProductDetails(id)
         .subscribe(
-          res=>console.log(res),
+          res=>{
+            console.log(res),
+            this.productDetails = res[0][0]
+            this.productSoldHistoryList = res[1]
+          },
           err=>console.log(err)
         )
   }

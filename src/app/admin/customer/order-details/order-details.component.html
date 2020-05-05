@@ -1,0 +1,64 @@
+
+<div class="col-xl-8 margin-auto">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-print float-right"><i class="fas fa-print"></i> Print</button> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">Full Name</div>
+        <div class="col">{{uid}}</div>
+    </div>
+    <div class="row">
+        <div class="col-2">Track Id</div>
+        <div class="col">{{trackId}}</div>
+    </div>
+    <div class="row">
+        <div class="col-2">Total price</div>
+        <div class="col">{{totPrice}}</div>
+    </div>
+    <div class="row">
+        <div class="col-2">Date</div>
+        <div class="col">{{date}}</div>
+    </div>
+    <div class="row">
+        <div class="col-2">Status</div>
+        <div class="col">{{status}}</div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-xl-8 margin-auto">
+        <div class="card-box borderShadow">
+           <h4 class="header-title mb-4">Orders</h4>
+           <div class="table-responsive">
+                <table class="table table-hover table-centered m-0">
+                    <thead>
+                        <tr>
+                            <th>Product Id</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orderList" >
+                            <td>{{item['productId']}}</td>
+                            <td>{{item['price']}}</td>
+                            <td>{{item['discount']}}</td>
+                            <td>{{item['amount']}}</td>
+                            <td>{{item['date']}}</td>
+                            <td>{{item['status']}}</td>
+                            <th></th>
+                        </tr>
+                        <tr  *ngIf="orderList == 0">
+                            <td colspan="7" style="text-align: center;padding-top: 15px;">No results to display.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

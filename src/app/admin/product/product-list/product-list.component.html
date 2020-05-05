@@ -13,11 +13,13 @@
                             <th>Price</th>
                             <th>Discount</th>
                             <th>Quantity</th>
+                            <th>Visibility</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of productList" [routerLink]="['/admin/productView']" [queryParams]="{ id : item['id'] }" >
+                        <tr *ngFor="let item of productList"  >
                             <td>{{item['id']}}</td>
                             <td class="row-product-img"><img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt=""></td>
                             <td>{{item['name']}}</td>
@@ -25,6 +27,22 @@
                             <td>{{item['price']}}</td>
                             <td>{{item['discount']}}</td>
                             <td>{{item['qty']}}</td>
+                            <td>{{item['visible']}}</td>
+                            <td>
+                                <div class="toggle-btn" [ngClass]="{ 'active' : item['visible'] == 1 } " >
+                                    <div class="circle" (click)="changeProductVisibilty($event,item['id'])"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="dropdown">
+                                    <span class="drop_menu" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-v" ></i>
+                                    </span>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                      <button type="button" class="btn dropdown-item" [routerLink]="['/admin/productView']" [queryParams]="{ id : item['id'] }">Details</button>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

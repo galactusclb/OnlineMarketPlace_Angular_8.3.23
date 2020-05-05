@@ -17,6 +17,11 @@ export class ProductsService {
   private _addMainCategoryProductsUrl = this.url+"addMainCategoryProducts";
   private _uploadProductImgUrl = this.url+"profile"
   private _productsOrderUrl = this.url+"productsOrder"
+  private _getOrderListUrl = this.url+"getOrderList"
+  private _getOrderByTrackIdUrl = this.url+"getOrderByTrackId"
+  private _getOrderDetailsByTrackIdUrl = this.url+"getOrderDetailsByTrackId"
+  private _ordersStatusChangeUrl = this.url+"orderStatusChange";
+  private _updateProductVisibiltyUrl = this.url+"updateProductVisibilty"
 
   constructor( private http: HttpClient) { }
 
@@ -38,9 +43,17 @@ export class ProductsService {
       observe: 'events'
     })
   }
+  changeProductVisibilty(id){
+    return this.http.post<any>(this._updateProductVisibiltyUrl, { params : { productId : id }})
+  }
   addMainCategoryProducts(product){
     return this.http.post<any>(this._addMainCategoryProductsUrl,product);
   }
+
+  changeStatus(newStatus,id){
+    return this.http.post<any>(this._ordersStatusChangeUrl,{params : { sid : id  , status : newStatus } });
+  }
+
   removeProductFromHome(id){
     console.log('delete this '+ id)
     return this.http.post<any>(this._removeProductFromHomeUrl, { params : { item : id }})
@@ -54,9 +67,19 @@ export class ProductsService {
 
 
   productsOrder(details){
-    console.log(details)
     return this.http.post<any> ( this._productsOrderUrl , { params : { orders : details }});
   }
 
 
+  getOrderList(){
+    return this.http.get<any> ( this._getOrderListUrl);
+  }
+  getOrderByTrackId(id){
+    console.log(id)
+    return this.http.get<any>( this._getOrderByTrackIdUrl , { params : { trackId : id }})
+  }
+  getOrderDetailsByTrackId(id){
+    console.log(id)
+    return this.http.get<any>( this._getOrderDetailsByTrackIdUrl , { params : { trackId : id }})
+  }
 }
