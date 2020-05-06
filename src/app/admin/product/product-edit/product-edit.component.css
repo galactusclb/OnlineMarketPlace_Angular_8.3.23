@@ -25,6 +25,7 @@
 }
 
 
+
 .form-group label{
     height: 32px;
 }
@@ -35,4 +36,9 @@
 .form-control-row label{
     height: unset;
     margin-right: 15px;
+}
+
+
+.hide{
+    display: none;
 }

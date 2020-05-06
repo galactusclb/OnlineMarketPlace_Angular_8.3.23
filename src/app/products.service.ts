@@ -9,10 +9,13 @@ export class ProductsService {
   url:string = "http://localhost:3000/api/"
 
   private _getItemsUrl = this.url+"getItems";
+  private _getProductDetailsHistoryUrl = this.url+"getProductDetailsHistory";
   private _getProductDetailsUrl = this.url+"getProductDetails";
   private _getMainCategoryProductsUrl = this.url+"getMainCategoryProducts";
   private _getAllProductsUrl = this.url+"getAllProducts";
   private _addProductUrl = this.url+"addProduct";
+  private _updateProductImgUrl = this.url+"updateProductImg";
+  private _updateProdcutsDetailsUrl = this.url+"updateProdcutsDetails"
   private _removeProductFromHomeUrl = this.url+"removeProductFromHome"
   private _addMainCategoryProductsUrl = this.url+"addMainCategoryProducts";
   private _uploadProductImgUrl = this.url+"profile"
@@ -22,6 +25,7 @@ export class ProductsService {
   private _getOrderDetailsByTrackIdUrl = this.url+"getOrderDetailsByTrackId"
   private _ordersStatusChangeUrl = this.url+"orderStatusChange";
   private _updateProductVisibiltyUrl = this.url+"updateProductVisibilty"
+  private _updateProductDiscountOnOffUrl = this.url+"updateProductDiscountOnOff"
 
   constructor( private http: HttpClient) { }
 
@@ -37,14 +41,29 @@ export class ProductsService {
   getProductDetails(id){
     return this.http.get<any> (this._getProductDetailsUrl,{ params : { productId : id }})
   }
+  getProductDetailsHistory(id){
+    return this.http.get<any> (this._getProductDetailsHistoryUrl,{ params : { productId : id }})
+  }
   addProduct(details){
     return this.http.post<any>( this._addProductUrl,details , {
       reportProgress : true,
       observe: 'events'
     })
   }
+  updateProductImg(details){
+    return this.http.post<any>( this._updateProductImgUrl,details , {
+      reportProgress : true,
+      observe: 'events'
+    })
+  }
+  updateProdcutsDetails(details){
+    return this.http.post<any> (this._updateProdcutsDetailsUrl,details)
+  }
   changeProductVisibilty(id){
     return this.http.post<any>(this._updateProductVisibiltyUrl, { params : { productId : id }})
+  }
+  changeProductDiscountOnOff(id){
+    return this.http.post<any>(this._updateProductDiscountOnOffUrl, { params : { productId : id }})
   }
   addMainCategoryProducts(product){
     return this.http.post<any>(this._addMainCategoryProductsUrl,product);

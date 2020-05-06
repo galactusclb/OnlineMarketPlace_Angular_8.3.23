@@ -158,6 +158,8 @@
     font-weight: 400;
     margin-bottom: 0px;
     line-height: 1.625;
+    height: 45px;
+    overflow: hidden;
 }
 .price{
     display: flex;

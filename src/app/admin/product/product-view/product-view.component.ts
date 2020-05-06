@@ -26,7 +26,7 @@ export class ProductViewComponent implements OnInit {
   }
 
   getProductDetails(id){
-    this._product.getProductDetails(id)
+    this._product.getProductDetailsHistory(id)
         .subscribe(
           res=>{
             console.log(res),

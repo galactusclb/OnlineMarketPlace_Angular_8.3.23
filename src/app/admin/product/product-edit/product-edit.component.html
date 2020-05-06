@@ -1,0 +1,84 @@
+
+<div class="row mt-3">
+    <div class="col-lg-7">
+        <h4 class="mb-3">Product Id : {{productId}}</h4>
+        <form action="" class="form">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Product Title</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product Title" [(ngModel)]="productDetails['name']" name="title">
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Category</label>
+                        <select name="category" class="form-control" [(ngModel)]="productDetails['category']">
+                            <option value="grocery">Grocery</option>
+                            <option value="pets">Pets</option>
+                            <option value="gift">Gift</option>
+                            <option value="homeAndKitchen">Home & Kitchen</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="beautyAndHealth">Beauty & Health </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Quantity</label>
+                        <input type="text" class="form-control" [(ngModel)]="productDetails['qty']" name="qty">
+                    </div>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input type="text" class="form-control" [(ngModel)]="productDetails['price']" name="price">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="form-control-row">
+                            <label >discount</label>
+                            <div class="toggle-btn" [ngClass]="{ 'active' : productDetails['discountOn'] == 1 } " >
+                                <div class="circle" (click)="changeDiscountOnOff($event)"></div>
+                            </div>
+                            <input type="hidden" class="form-control" [(ngModel)]="productDetails['discountOn']" name="discountOnOff">
+                        </div>                        
+                        <input type="text" class="form-control mt-2" [attr.readonly]="productDetails['discountOn'] == 0 ? 'readonly' : null " [(ngModel)]="productDetails['discount']" name="discount">
+                    </div> 
+                </div>
+            </div>      
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="form-control-row">
+                            <label for="exampleInputEmail1">Visiblity</label>
+                            <input type="hidden" class="form-control" [(ngModel)]="productDetails['visible']" name="visible">
+                            <div class="toggle-btn" [ngClass]="{ 'active' : productDetails['visible'] == 1 } " >
+                                <div class="circle" (click)="changeProductVisibilty($event)"></div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </div>                            
+            <div class="form-group">
+                <button class="btn btn-success" (click)="updateProdcutsDetails()">Save</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-5">        
+        <div class="col-lg">
+            <img [src]="imgURL" height="200" *ngIf="imgURL">
+        </div>
+        <div class="col-lg">
+            <form action="" method="POST" class="form">
+                <input type="file" ng-model="files" class="hide"  #file accept='image/*' (change)="preview(file.files)" (change)="onFileSelected($event)"> 
+                <button type="button" (click)="file.click()" class="btn btn-info">Pick Photo</button>
+                <button type="button" (click)="onUpload()" class="hide">Upload</button>
+                <!-- <input type="file" ng-model="files" #fileInput> -->
+                <button (click)="updateProductImg()">upload</button>
+            </form>
+        </div>
+    </div>
+</div>

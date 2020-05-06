@@ -38,8 +38,8 @@
                     <div class="category-row">
                         <div class="col-md-6 col-lg-3 product-card" *ngFor="let product of products">
                             <div class="xs-product-category">
-                                <div class="xs-product-category-bg" *ngIf="product['discount'] > 0">
-                                    <span>Save Rs.500</span>
+                                <div class="xs-product-category-bg" *ngIf="product['discountOn'] == 1">
+                                    <span>Save {{product['discount']}} %</span>
                                 </div>
                                 <div class="make-heart">
                                     <i class="far fa-heart remove-heart block"></i>
@@ -47,14 +47,13 @@
                                 </div>
                                 
                                 <div class="product-img-box">
-                                    <!-- <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-253x200.jpg" alt="Delmonico Steak"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true"> -->
                                     <img src="http://localhost:3000/api/uploads/products/{{product['pic']}}" alt="" srcset="">
                                 </div>
                                 <p class="product-title">
                                     {{product['name']}}
                                 </p>
                                 <span class="price">
-                                    <del *ngIf="product['discount'] > 0 ">Rs.{{product['discount']}}.00</del> 
+                                    <del *ngIf="product['discountOn'] == 1 ">Rs.{{product['discount']}}.00</del> 
                                     <span class="current-price">Rs.{{product['price']}}.00</span>
                                 </span>
                                 <div class="product-add-to-cart">

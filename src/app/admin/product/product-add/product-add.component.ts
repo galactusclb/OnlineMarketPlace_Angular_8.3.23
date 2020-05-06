@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { HttpEventType } from '@angular/common/http';
 import { ProductsService } from 'src/app/products.service';
 
@@ -16,9 +16,11 @@ export class ProductAddComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private _product : ProductsService) { }
+  constructor(private _product : ProductsService,private renderer:Renderer2) { }
 
   ngOnInit() {
+    this.addProductDetails['visible'] = 0;
+    this.addProductDetails['discountOn'] = 0
   }
 
   addProduct(){
@@ -104,4 +106,30 @@ export class ProductAddComponent implements OnInit {
   //       err => console.log(err)
   //     )
   // }
+
+  changeProductVisibilty(event){
+      const hasClass = event.target.parentElement.classList.contains('active');
+
+      if(hasClass ) {
+        this.renderer.removeClass(event.target.parentElement,'active');
+        this.addProductDetails['visible'] = 0;
+      } else {
+        this.renderer.addClass(event.target.parentElement,'active');
+        this.addProductDetails['visible'] = 1;
+      }
+  }
+
+  changeDiscountOnOff(event){
+      const hasClass = event.target.parentElement.classList.contains('active');
+
+      if(!hasClass) {
+        this.addProductDetails['discountOn'] = 1;
+        this.renderer.addClass(event.target.parentElement,'active');
+        this.renderer.setAttribute(event.target.parentElement.nextElementSibling,'readonly','true');
+      } else {
+        this.addProductDetails['discountOn'] = 0;
+        this.renderer.removeClass(event.target.parentElement,'active');
+        this.renderer.removeAttribute(event.target.parentElement.nextElementSibling,'readonly');
+      }
+  }
 }

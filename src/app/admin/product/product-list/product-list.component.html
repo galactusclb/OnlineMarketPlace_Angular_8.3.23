@@ -1,5 +1,5 @@
 <div class="row mt-4">
-    <div class="col-xl-8 margin-auto">
+    <div class="col-xl-10 margin-auto">
         <div class="card-box borderShadow">
            <h4 class="header-title mb-4">Products</h4>
            <div class="table-responsive">
@@ -11,10 +11,11 @@
                             <th>Product Name</th>
                             <th>Category</th>
                             <th>Price</th>
+                            <th>DiscountOn/Off</th>
                             <th>Discount</th>
                             <th>Quantity</th>
+                            <th>Sold</th>
                             <th>Visibility</th>
-                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -25,9 +26,14 @@
                             <td>{{item['name']}}</td>
                             <td>{{item['category']}}</td>
                             <td>{{item['price']}}</td>
+                            <td>
+                                <div class="toggle-btn" [ngClass]="{ 'active' : item['discountOn'] == 1 } " >
+                                    <div class="circle" (click)="changeProductDiscountOnOff($event,item['id'])"></div>
+                                </div>
+                            </td>
                             <td>{{item['discount']}}</td>
                             <td>{{item['qty']}}</td>
-                            <td>{{item['visible']}}</td>
+                            <td>{{item['itemSold']}}</td>
                             <td>
                                 <div class="toggle-btn" [ngClass]="{ 'active' : item['visible'] == 1 } " >
                                     <div class="circle" (click)="changeProductVisibilty($event,item['id'])"></div>

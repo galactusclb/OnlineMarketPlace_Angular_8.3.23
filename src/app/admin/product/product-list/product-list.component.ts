@@ -70,4 +70,18 @@ export class ProductListComponent implements OnInit {
     }
   }
 
+  changeProductDiscountOnOff(event: any,id){
+    if(confirm("Are you sure want to enable/disable ? ")) {
+      this._product.changeProductDiscountOnOff(id)
+      .subscribe(
+        res=> {
+          this.toggleClass2(event,res)
+        },
+        err=> console.log(err)
+      )
+    }
+  }
+
+  
+
 }

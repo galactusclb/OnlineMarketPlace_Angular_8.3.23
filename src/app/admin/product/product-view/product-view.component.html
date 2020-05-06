@@ -13,7 +13,7 @@
     <div class="col-lg-6">
         <div class="row">
             <div class="col">
-                <button class="btn btn-warning float-right">Edit</button>
+                <button class="btn btn-warning float-right" [routerLink]="['/admin/productEdit']" [queryParams]="{ id : productId }" >Edit</button>
             </div>
         </div>
         <label for="">category</label> : 
