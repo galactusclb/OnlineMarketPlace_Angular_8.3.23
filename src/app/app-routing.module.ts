@@ -11,6 +11,9 @@ import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.compon
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { OrderRequestsComponent } from './admin/customer/order-requests/order-requests.component';
 import { OrderDetailsComponent } from './admin/customer/order-details/order-details.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
@@ -25,11 +28,19 @@ const routes: Routes = [
   },
   {
     path: 'shopping',
-    component: ShoppingComponent
+    component: ShoppingComponent    
   },
   {
     path: 'cart',
     component: ShoppingCartComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'admin',
@@ -43,7 +54,9 @@ const routes: Routes = [
       { path: 'orderRequests' , component : OrderRequestsComponent},
       { path: 'orderDetails' , component: OrderDetailsComponent},
       { path: 'editHome', component: EditHomeComponent}
-    ]
+    ],
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard] 
   }
 ];
 

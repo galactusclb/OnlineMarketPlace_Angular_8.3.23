@@ -85,6 +85,19 @@
               Admin
             </a>
           </li>
+          <li class="nav-item dropdown" *ngIf="!_auth.loggedIn()">
+            <a class="navItem_a_style"  [routerLink]="['/register']"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Register
+            </a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="!_auth.loggedIn()">
+            <a class="navItem_a_style"  [routerLink]="['/login']"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              Login
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="navItem_a_style" *ngIf="_auth.loggedIn()" (click)="_auth.logout()" style="display: block;cursor: pointer;">Logout</a>   
+          </li>
         </ul>
       </div>
     </nav>

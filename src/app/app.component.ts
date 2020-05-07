@@ -1,6 +1,7 @@
 import { Component,OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CartService } from './cart.service';
+import { AuthService } from './services/auth.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class AppComponent implements OnDestroy{
 
   cartItemCount: number = 0;
 
-  constructor(private _cart: CartService){
+  constructor(private _cart: CartService, private _auth:AuthService){
       this._cart.currentCart.subscribe(msg => this.cartItemCount = msg);
       this.cartItemCount =  this._cart.getCartCount()
       this.subscription = this._cart.getMessage().subscribe( message =>{

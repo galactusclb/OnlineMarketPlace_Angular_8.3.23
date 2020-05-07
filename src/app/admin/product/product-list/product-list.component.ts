@@ -1,5 +1,8 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ProductsService } from 'src/app/products.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -10,10 +13,25 @@ export class ProductListComponent implements OnInit {
 
   productList = []
 
-  constructor(private _product: ProductsService,private renderer: Renderer2) { }
+  constructor(private _product: ProductsService,private _auth:AuthService, private renderer: Renderer2,private _router:Router) { }
 
   ngOnInit() {
     this.getAllProducts();
+    //this.getPermision();
+  }
+
+  getPermision(){
+    this._auth.getPermisionUser()
+      .subscribe(
+        res=>{},
+        err=> {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this._router.navigate(['/login'])
+            }
+          }
+        }
+      )
   }
 
   getAllProducts(){
@@ -23,33 +41,20 @@ export class ProductListComponent implements OnInit {
             console.log(res),
             this.productList = res
           },
-          err=> console.log(err)
+          err=> {
+            console.log(err);
+            if (err instanceof HttpErrorResponse) {
+              if (err.status === 401) {
+                this._router.navigate(['/login'])
+              }
+            }
+          }
         )
   }
 
-  // changeButton(event){
-  // //   $('.toggle-btn').click(function(){
-    
-  // //     $(this).toggleClass(".toggle-btn active");
-      
-  // // });
-  //    event.srcElement.parentElement.classList.add("toggle-btn active")
-  //    //console.log(event.srcElement.parentElement)
-  // }
-
-  // toggleClass(event) {
-  //   const hasClass = event.target.parentElement.classList.contains('active');
-  //   if(hasClass) {
-  //     this.renderer.removeClass(event.target.parentElement,'active');
-  //   } else {
-  //     this.renderer.addClass(event.target.parentElement,'active');
-  //   }
-  // }
-
   toggleClass2(event,res) {
-    // console.log(event)
      const hasClass = event.target.parentElement.classList.contains('active');
-     //console.log(hasClass)
+
      if(hasClass && res=='hidden') {
        this.renderer.removeClass(event.target.parentElement,'active');
      } else {

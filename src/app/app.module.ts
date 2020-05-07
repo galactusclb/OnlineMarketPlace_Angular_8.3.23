@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 
 //components
@@ -17,10 +17,17 @@ import { EditHomeComponent } from './admin/appearance/edit-home/edit-home.compon
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { OrderRequestsComponent } from './admin/customer/order-requests/order-requests.component';
 import { OrderDetailsComponent } from './admin/customer/order-details/order-details.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 
 //servicess
 import { ProductsService } from './products.service';
 import { CartService } from './cart.service';
+import { AuthService } from './services/auth.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+
+//guard
+import { AuthGuard } from './guard/auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,7 +42,9 @@ import { CartService } from './cart.service';
     ShoppingCartComponent,
     OrderRequestsComponent,
     OrderDetailsComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,12 @@ import { CartService } from './cart.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductsService, CartService],
+  providers: [ProductsService, CartService,AuthService,AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
