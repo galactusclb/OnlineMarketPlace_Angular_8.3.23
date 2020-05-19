@@ -19,6 +19,9 @@ import { OrderRequestsComponent } from './admin/customer/order-requests/order-re
 import { OrderDetailsComponent } from './admin/customer/order-details/order-details.component';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
+import { PageNotFoundComponent } from './wildCardPages/page-not-found/page-not-found.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
 
 //servicess
 import { ProductsService } from './products.service';
@@ -28,6 +31,7 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 
 //guard
 import { AuthGuard } from './guard/auth.guard';
+import { RoleGuard } from './guard/role.guard';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { AuthGuard } from './guard/auth.guard';
     OrderDetailsComponent,
     ProductEditComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    PageNotFoundComponent,
+    UserProfileComponent,
+    CatalogSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,7 @@ import { AuthGuard } from './guard/auth.guard';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductsService, CartService,AuthService,AuthGuard,
+  providers: [ProductsService, CartService,AuthService,AuthGuard,RoleGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

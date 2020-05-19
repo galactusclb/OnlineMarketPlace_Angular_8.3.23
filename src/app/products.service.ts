@@ -12,6 +12,7 @@ export class ProductsService {
   private _getProductDetailsHistoryUrl = this.url+"getProductDetailsHistory";
   private _getProductDetailsUrl = this.url+"getProductDetails";
   private _getMainCategoryProductsUrl = this.url+"getMainCategoryProducts";
+  private _mainSearchProductsUrl = this.url+"mainSearchProducts";
   private _getAllProductsUrl = this.url+"getAllProducts";
   private _addProductUrl = this.url+"addProduct";
   private _updateProductImgUrl = this.url+"updateProductImg";
@@ -31,6 +32,10 @@ export class ProductsService {
 
   getMainCategoryProducts(category){
     return this.http.get<any> (this._getMainCategoryProductsUrl,{ params : { category : category }})
+  }
+  mainSearchProducts(details){
+    //return this.http.get<any>(this._mainSearchProductsUrl,{ params : details })
+    return this.http.get<any>(this._mainSearchProductsUrl,{ params : { details : details } })
   }
   getAllProducts(){
     return this.http.get<any> ( this._getAllProductsUrl)

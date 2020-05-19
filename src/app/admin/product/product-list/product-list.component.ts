@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllProducts();
-    //this.getPermision();
+    this.getPermision();
   }
 
   getPermision(){
@@ -27,6 +27,7 @@ export class ProductListComponent implements OnInit {
         err=> {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
+              this._auth.removeToken()
               this._router.navigate(['/login'])
             }
           }

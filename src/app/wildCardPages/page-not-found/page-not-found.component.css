@@ -1,0 +1,36 @@
+.container-fluid{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    left:0;
+    background: #17a2b8;
+    color: #fff;
+}
+.div404{
+    position: relative;
+    top: -10%;
+    text-align: center;
+    margin: 0;
+}
+.errorNum{
+    display: inline;
+    font-size: 100px;
+    font-weight: 900;
+}
+.errorBody{
+    display: inline;
+    font-size:  24px;
+}
+.errorRedirectBtn button{
+    color: #17a2b8;
+    padding: 7px 15px;
+    border: 1px solid #fff ;
+    border-radius: 30px;
+}
+.contactUsBtn{
+    color: #fff !important;
+    background: rgba(0, 0, 0, 0);
+    margin-left: 20px;
+}

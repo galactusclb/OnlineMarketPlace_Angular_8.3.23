@@ -5,8 +5,8 @@
     <h2 class="navbar-brand">OnlineMarketPlace</h2>
     <div class="div-searchbar">
       <form post="GET">
-        <input type="text" placeholder="search...">
-        <span><i class="fas fa-search"></i></span>
+        <input type="text" [(ngModel)]="searchingDetails['title']" (ngModelChange)="searchProducts()" name="titlew" placeholder="search...">
+        <span (click)="searchProductRoute()"><i class="fas fa-search"></i></span>
       </form>
     </div>
     <div class="cart">
@@ -19,13 +19,13 @@
         </span>
       </a>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-3">
         <span *ngFor="let item of message">
           {{item['text']}}
         </span>
       </div>
-    </div>
+    </div> -->
   </div>
   <div class="container-flude header-bottom-nav">
     <nav class="container navbar navbar-expand-lg navbar_style">
@@ -81,7 +81,7 @@
             </a>
           </li>
           <li class="nav-item dropdown">
-            <a class="navItem_a_style" [routerLink]="['/admin']"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <a class="navItem_a_style" *ngIf="role" [routerLink]="['/admin']"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               Admin
             </a>
           </li>
@@ -94,6 +94,9 @@
             <a class="navItem_a_style"  [routerLink]="['/login']"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               Login
             </a>
+          </li>
+          <li class="nav-item dropdown" *ngIf="_auth.loggedIn()">
+            <a class="navItem_a_style" [routerLink]="['/userProfile']" style="display: block;cursor: pointer;">Profile {{username}}</a>   
           </li>
           <li class="nav-item dropdown">
             <a class="navItem_a_style" *ngIf="_auth.loggedIn()" (click)="_auth.logout()" style="display: block;cursor: pointer;">Logout</a>   

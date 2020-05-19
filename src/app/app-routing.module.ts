@@ -14,6 +14,10 @@ import { OrderDetailsComponent } from './admin/customer/order-details/order-deta
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthGuard } from './guard/auth.guard';
+import { RoleGuard } from './guard/role.guard';
+import { PageNotFoundComponent } from './wildCardPages/page-not-found/page-not-found.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
 
 
 const routes: Routes = [
@@ -31,6 +35,10 @@ const routes: Routes = [
     component: ShoppingComponent    
   },
   {
+    path: 'catalogsearch',
+    component: CatalogSearchComponent
+  },
+  {
     path: 'cart',
     component: ShoppingCartComponent
   },
@@ -41,6 +49,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'userProfile',
+    component: UserProfileComponent,
+    canActivate: [AuthGuard,RoleGuard],
+    data: {role: ['admin','user']}
   },
   {
     path: 'admin',
@@ -55,8 +69,12 @@ const routes: Routes = [
       { path: 'orderDetails' , component: OrderDetailsComponent},
       { path: 'editHome', component: EditHomeComponent}
     ],
-    canActivate: [AuthGuard],
-    canLoad: [AuthGuard] 
+    canActivate: [AuthGuard,RoleGuard],
+    data: {role: ['admin']}
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

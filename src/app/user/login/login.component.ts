@@ -19,12 +19,12 @@ export class LoginComponent implements OnInit {
     //console.log(this.regUserDetails)
     this._auth.loginUser(this.loginUserDetails)
         .subscribe(
-          res=>{
-            console.log(res);
-            localStorage.setItem('token', res.token)
-            this._router.navigate(['/register'])
-          },
-          err=>console.log(err)
+          success => {
+            if (success) {
+              this._auth.getLoginStatus(true);
+              this._router.navigate(['/register']);
+            }
+          }
         )
 }
 }
