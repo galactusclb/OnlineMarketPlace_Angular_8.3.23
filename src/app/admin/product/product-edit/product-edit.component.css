@@ -39,6 +39,30 @@
 }
 
 
+.searchedItem{
+    margin:0 3px;
+}
+.searchedItem:nth-child(1){
+    margin-left: 0;
+}
+.searchedItem label{
+    color: #fff;
+    font-weight: 500;
+    background: rgba(201, 24, 107, 0.788);
+    padding: 5px 15px;
+    padding-right: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.searchedItem label:hover{
+    background: rgba(201, 24, 107, 0.884); 
+}
+.searchedItem label span i{
+    position: relative;
+    top: 1px;
+    margin-left: 5px;
+}
+
 .hide{
     display: none;
 }

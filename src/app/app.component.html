@@ -1,5 +1,5 @@
 
-<header class=" fixed-top">
+<header class="fixed-top ">
   <div class="container main-header-top">
     <img src="../assets/img/logo.jpg" class="navbar-brand">
     <h2 class="navbar-brand">OnlineMarketPlace</h2>
@@ -27,13 +27,20 @@
       </div>
     </div> -->
   </div>
-  <div class="container-flude header-bottom-nav">
-    <nav class="container navbar navbar-expand-lg navbar_style">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class=" navbar navbar-default navbar-expand-lg navbar_style header-bottom-nav">
+      <div class="navbar-header d-flex col "> 		
+        <button type="button" data-target="#navbarSupportedContent" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto burger">
+          <span class="navbar-toggler-icon"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars navbar-toggler-icon"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+      </button> -->
+      <div class="collapse navbar-collapse justify-content-start res-naviDiv" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ">
           <li class="nav-item dropdown">
             <a class="navItem_a_style" [routerLink]="['/']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               Home <i class="fas fa-angle-down"></i>
@@ -104,7 +111,6 @@
         </ul>
       </div>
     </nav>
-  </div>
 </header>
 <div>
   <router-outlet></router-outlet>            

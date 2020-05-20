@@ -16,7 +16,8 @@ export class ProductsService {
   private _getAllProductsUrl = this.url+"getAllProducts";
   private _addProductUrl = this.url+"addProduct";
   private _updateProductImgUrl = this.url+"updateProductImg";
-  private _updateProdcutsDetailsUrl = this.url+"updateProdcutsDetails"
+  private _updateProdcutsDetailsUrl = this.url+"updateProdcutsDetails";
+  private _updateProductTagsUrl = this.url+"updateProductTags";
   private _removeProductFromHomeUrl = this.url+"removeProductFromHome"
   private _addMainCategoryProductsUrl = this.url+"addMainCategoryProducts";
   private _uploadProductImgUrl = this.url+"profile"
@@ -63,6 +64,11 @@ export class ProductsService {
   }
   updateProdcutsDetails(details){
     return this.http.post<any> (this._updateProdcutsDetailsUrl,details)
+  }
+  updateProductTags(tags,id){
+    return this.http.post<any> (this._updateProductTagsUrl,{ params : { tags : tags , id : id } })
+    //return this.http.get<any>(this._mainSearchProductsUrl,{ params : details })
+    //return this.http.get<any>(this._mainSearchProductsUrl,{ params : { tags : tags } })
   }
   changeProductVisibilty(id){
     return this.http.post<any>(this._updateProductVisibiltyUrl, { params : { productId : id }})

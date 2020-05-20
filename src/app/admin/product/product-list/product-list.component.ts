@@ -28,6 +28,7 @@ export class ProductListComponent implements OnInit {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
               this._auth.removeToken()
+              this._auth.getLoginStatus(true);
               this._router.navigate(['/login'])
             }
           }

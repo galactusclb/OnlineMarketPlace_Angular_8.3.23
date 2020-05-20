@@ -11,8 +11,10 @@ import { HttpEventType } from '@angular/common/http';
 export class ProductEditComponent implements OnInit {
 
   productDetails:any = {}
+  tags:any ;
 
   productId:string;
+  addTag:string;
   selectedFile:File = null;
   imgURL: any;
   public message: string;
@@ -35,6 +37,8 @@ export class ProductEditComponent implements OnInit {
             console.log(res),
             this.productDetails = res[0];
             this.imgURL = "http://localhost:3000/api/uploads/products/"+this.productDetails['pic']
+            this.tags = this.productDetails['tags'].split(",")
+            console.log(this.tags)
           },
           err=>console.log(err)
         )
@@ -47,7 +51,24 @@ export class ProductEditComponent implements OnInit {
           err=>console.log(err)
         )
   }
+  updateProductTags(){
+     //newTagList = [];
+    let newTagList = this.tags.slice(0)
 
+    if (this.addTag != null && this.addTag != '' ) {
+      newTagList.push(this.addTag);
+    }
+    // console.log(newTagList.join(","));
+    this._product.updateProductTags(newTagList.join(","),this.productDetails['id'])
+      .subscribe(
+          res=>{
+            this.productDetails['tags'] = res[0]['tags'];
+            this.tags = this.productDetails['tags'].split(",");
+          },
+          err=>console.log(err)
+      )
+  }
+  
   changeProductVisibilty(event){
     const hasClass = event.target.parentElement.classList.contains('active');
 
@@ -145,4 +166,18 @@ export class ProductEditComponent implements OnInit {
       this.imgURL = reader.result; 
     }
 }
+
+
+
+    removeTagFromArray(tagIndex){
+        console.log(tagIndex);
+
+        const index = this.tags.indexOf(tagIndex);
+        if (index > -1) {
+          this.tags.splice(index, 1);
+        }
+
+        console.log(this.tags)
+    }
+
 }
