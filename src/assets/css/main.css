@@ -1,0 +1,25 @@
+.toggle-btn
+{
+    width:50px;
+    height:25px;
+    background:gray;
+    border-radius:30px;
+    padding:2px 3px;
+    transition:all 400ms ease-in-out;
+}
+.toggle-btn > .circle
+{
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:50%;
+    transition:all 400ms ease-in-out;
+}
+.active
+{
+    background:#51aa1b;
+}
+.active > .circle
+{
+    margin-left:25px;
+}

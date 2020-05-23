@@ -1,3 +1,20 @@
+<div class="col-lg-6" >
+    <h4>Add Category to home </h4>
+    <form method="post" class="form">
+        <div class="form-group">
+            <label for="">Category</label>
+            <input type="text" [(ngModel)]="categoryDetails['pCategory']" name="category" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Visibilty</label>
+            <select name="visibilty" [(ngModel)]="categoryDetails['visibilty']" class="form-control">
+                <option value="1">Show</option>
+                <option value="0">Hidden</option>
+            </select>
+        </div>
+        <button class="btn btn-success" (click)="addMainCategoriesTitle()">Add</button>
+    </form>
+</div>
 <div class="row ">
     <div class="col-lg-12">
         <button type="button " class="btn btn-success float-right" (click)="addProdcutDiv()">
@@ -23,7 +40,16 @@
 <div class="row mt-4">
     <div class="col-xl-6" *ngFor="let category of products">
         <div class="card-box borderShadow">
-           <h4 class="header-title mb-4">{{category[0].category}}</h4>
+           <h4 class="header-title mb-4">
+               {{category['title']}} 
+               <button type="button" class="btn btn-warning btn-delete ml-3" (click)="removeCategoryFromHome(category['title'])"><i class="far fa-trash-alt"></i></button>
+               <span class="ml-3 mr-1">
+                   show
+               </span>
+               <div class="toggle-btn" [ngClass]="{ 'active' : category['visible'] == 1 } " >
+                    <div class="circle" (click)="changeMainCategoryVisibilty($event,category['title'])"></div>
+               </div>
+            </h4>
            <div class="table-responsive">
                 <table class="table table-hover table-centered m-0">
                     <thead>

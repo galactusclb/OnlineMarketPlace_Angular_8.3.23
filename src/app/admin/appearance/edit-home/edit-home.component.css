@@ -23,6 +23,8 @@
     border-radius: .25rem;
 }
 .header-title {
+    display: flex;
+    flex-direction: row;
     font-size: 1.1rem;
     margin: 0 0 7px 0;
     margin-bottom: 7px;

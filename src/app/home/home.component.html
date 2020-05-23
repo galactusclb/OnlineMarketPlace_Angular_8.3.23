@@ -427,7 +427,7 @@
                     <div class="pl-3 pr-3 pb-3" *ngIf="category.length > 0">                                  
                         <h4 class="row-title mb-3 category-row-title">
                             <!-- Beauty & Health  -->
-                            {{category[0].category}}
+                            {{category['title']}}
                             <a [routerLink]="['/shopping']" [queryParams]="{ shop : 'beautyandhealth' }" >click here to see more</a>
                         </h4>
                         <div class="row category-row" >
@@ -466,41 +466,6 @@
                                     </label>
                                 </div>
                                 
-                            </div>
-                            <div class="col-md-6 col-lg-3 product-card">
-                                <div class="xs-product-category">
-                                    <div class="xs-product-category-bg hide">
-                                        <span>Save Rs.500</span>
-                                    </div>
-                                    <div class="make-heart">
-                                        <i class="far fa-heart remove-heart block"></i>
-                                        <i class="fas fa-heart  heart hide"></i>
-                                    </div>
-                                    
-                                    <div class="product-img-box">
-                                        <img src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-253x200.jpg" alt="Delmonico Steak"  data-lazy-src="https://wp.xpeedstudio.com/marketo/grocery/wp-content/uploads/sites/18/2018/10/9-min-125x142.jpg" class="lazyloaded" data-was-processed="true">
-                                    </div>
-                                    <p class="product-title">
-                                        Delmonico Steak
-                                    </p>
-                                    <span class="price">
-                                        <del>$140.00</del> 
-                                        <span class="current-price">$130.00</span>
-                                    </span>
-                                    <div class="product-add-to-cart">
-                                        <!-- <label>Qty : </label> -->
-                                        <span class="">
-                                            <input type="hidden" class="max-value" value="20">
-                                            <input type="button" class="minus" value="-">
-                                            <input type="number" id="value" class="cart-value" min="0" max="100" value="1" readonly>
-                                            <input type="button" class="plus" value="+">
-                                        </span>
-                                    </div>
-                                    <label class="add-to-cart-button">
-                                        <i class="fab fa-opencart"></i>
-                                        <input type="button" value="Add to cart">
-                                    </label>
-                                </div>
                             </div>
                         </div>
                     </div>

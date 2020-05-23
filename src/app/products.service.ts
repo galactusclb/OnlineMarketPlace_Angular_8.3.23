@@ -11,6 +11,8 @@ export class ProductsService {
   private _getItemsUrl = this.url+"getItems";
   private _getProductDetailsHistoryUrl = this.url+"getProductDetailsHistory";
   private _getProductDetailsUrl = this.url+"getProductDetails";
+  private _getMainCategoriesListUrl = this.url+"getMainCategoriesList";
+  private _getMainCategoriesListAdminUrl = this.url+"getMainCategoriesListAdmin";
   private _getMainCategoryProductsUrl = this.url+"getMainCategoryProducts";
   private _mainSearchProductsUrl = this.url+"mainSearchProducts";
   private _getAllProductsUrl = this.url+"getAllProducts";
@@ -18,7 +20,10 @@ export class ProductsService {
   private _updateProductImgUrl = this.url+"updateProductImg";
   private _updateProdcutsDetailsUrl = this.url+"updateProdcutsDetails";
   private _updateProductTagsUrl = this.url+"updateProductTags";
-  private _removeProductFromHomeUrl = this.url+"removeProductFromHome"
+  private _updateMainCategoryVisibiltyUrl = this.url+"updateMainCategoryVisibilty";
+  private _removeCategoryFromHomeUrl = this.url+"removeCategoryFromHome";
+  private _removeProductFromHomeUrl = this.url+"removeProductFromHome";
+  private _addMainCategoriesTitleUrl = this.url+"addMainCategoriesTitle";
   private _addMainCategoryProductsUrl = this.url+"addMainCategoryProducts";
   private _uploadProductImgUrl = this.url+"profile"
   private _productsOrderUrl = this.url+"productsOrder"
@@ -31,6 +36,12 @@ export class ProductsService {
 
   constructor( private http: HttpClient) { }
 
+  getMainCategoriesList(){
+    return this.http.get<any> (this._getMainCategoriesListUrl)
+  }
+  getMainCategoriesListAdmin(){
+    return this.http.get<any> (this._getMainCategoriesListAdminUrl)
+  }
   getMainCategoryProducts(category){
     return this.http.get<any> (this._getMainCategoryProductsUrl,{ params : { category : category }})
   }
@@ -76,6 +87,9 @@ export class ProductsService {
   changeProductDiscountOnOff(id){
     return this.http.post<any>(this._updateProductDiscountOnOffUrl, { params : { productId : id }})
   }
+  addMainCategoriesTitle(product){
+    return this.http.post<any>(this._addMainCategoriesTitleUrl,product);
+  }
   addMainCategoryProducts(product){
     return this.http.post<any>(this._addMainCategoryProductsUrl,product);
   }
@@ -84,8 +98,13 @@ export class ProductsService {
     return this.http.post<any>(this._ordersStatusChangeUrl,{params : { sid : id  , status : newStatus } });
   }
 
+  removeCategoryFromHome(category){
+    return this.http.post<any>(this._removeCategoryFromHomeUrl, { params : { category : category }} )
+  }
+  changeMainCategoryVisibilty(category){
+    return this.http.post<any>(this._updateMainCategoryVisibiltyUrl, { params : { category : category }})
+  }
   removeProductFromHome(id){
-    console.log('delete this '+ id)
     return this.http.post<any>(this._removeProductFromHomeUrl, { params : { item : id }})
   }
   uploadProductImg(img){

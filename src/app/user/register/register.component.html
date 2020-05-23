@@ -4,6 +4,10 @@
             <div class="col-lg-6">
                 <form action="" class="form">
                     <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" [(ngModel)]="regUserDetails['email']" name="email">
+                    </div>
+                    <div class="form-group">
                         <label for="">User Name</label>
                         <input type="text" class="form-control" [(ngModel)]="regUserDetails['uName']" name="uName">
                     </div>
