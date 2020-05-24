@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Product } from '../Models/Product.Model';
 import { CartService } from '../cart.service';
 import { ProductsService } from '../products.service';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -19,7 +22,7 @@ export class ShoppingCartComponent implements OnInit {
   totCost:number = 0;
   totFee:number = 0;
 
-  constructor(private _cart:CartService, private _product:ProductsService) { }
+  constructor(private _cart:CartService, private _product:ProductsService,private _auth:AuthService,private _router:Router) { }
 
   ngOnInit() {
     $.getScript('../../assets/js/custom.js');
@@ -114,26 +117,35 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   proceedOrder(){
-    console.log(this.productAddedTocart)
-    
-    const xd = []
-    xd.push( {cost : this.totFee } )
+    if (this._auth.loggedIn()) {
+      const xd = []
 
-    for (let i = 0; i < this.productAddedTocart.length; i++) {
-      xd.push( this.productAddedTocart[i] )
+      const user = this._auth.decode();
+      const userId = user.subject[0].userName
+
+      xd.push({ userId : userId })
+      xd.push( {cost : this.totFee } )
+  
+      for (let i = 0; i < this.productAddedTocart.length; i++) {
+        xd.push( this.productAddedTocart[i] )
+      }
+      this._product.productsOrder(xd)
+          .subscribe(
+            res=>{
+               console.log(res)
+               this.removeAll()
+            },
+            err=>console.log(err)
+          )
+    }else{
+        alert('Login first');
+        this._auth.removeToken();
+        this._auth.getLoginStatus(true);
+        this._router.navigate(['/login'])
     }
-
-   // this.finalInfo = { cost : this.totFee , items : this.productAddedTocart}
-    //console.log(this.productAddedTocart)
-    this._product.productsOrder(xd)
-        .subscribe(
-          res=>{
-             console.log(res)
-             this.removeAll()
-          },
-          err=>console.log(err)
-        )
+    
   }
+
 }
 
 

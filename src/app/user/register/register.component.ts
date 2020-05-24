@@ -11,9 +11,12 @@ export class RegisterComponent implements OnInit {
 
   regUserDetails = {}
 
+  townList:any = ['colombo','gampaha','kaduwela'];
+
   constructor(private _auth:AuthService, private _router:Router) { }
 
   ngOnInit() {
+    this.regUserDetails['town'] = this.townList[0];
   }
 
   registerUser(){

@@ -18,6 +18,7 @@ import { RoleGuard } from './guard/role.guard';
 import { PageNotFoundComponent } from './wildCardPages/page-not-found/page-not-found.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
+import { ConfirmComponent } from './user/confirm/confirm.component';
 
 
 const routes: Routes = [
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'confirm/:token',
+    component: ConfirmComponent
   },
   {
     path: 'userProfile',

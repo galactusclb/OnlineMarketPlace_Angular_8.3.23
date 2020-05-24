@@ -17,6 +17,7 @@ export class AuthService {
   private _registerUrl = this.url+"register"
   private _loginUrl = this.url+"login"
   private _getPermisionUserUrl = this.url+"getPermisionUser"
+  private _confirmEmailUrl = this.url+"confirmemail"
 
   user$ : Observable<User>;
 
@@ -31,6 +32,9 @@ export class AuthService {
   
   registerUser( user ){
       return this.http.post<any>(this._registerUrl, user)
+  }
+  confirmAccount(details){
+    return this.http.post<any>(this._confirmEmailUrl,{ details : details } )
   }
   loginUser( user ): Observable<boolean>{
     return this.http.post<any>(this._loginUrl, user)

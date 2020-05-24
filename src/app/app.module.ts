@@ -22,6 +22,7 @@ import { LoginComponent } from './user/login/login.component';
 import { PageNotFoundComponent } from './wildCardPages/page-not-found/page-not-found.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
+import { ConfirmComponent } from './user/confirm/confirm.component';
 
 //servicess
 import { ProductsService } from './products.service';
@@ -51,7 +52,8 @@ import { RoleGuard } from './guard/role.guard';
     LoginComponent,
     PageNotFoundComponent,
     UserProfileComponent,
-    CatalogSearchComponent
+    CatalogSearchComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

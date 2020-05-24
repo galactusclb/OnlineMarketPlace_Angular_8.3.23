@@ -1,7 +1,7 @@
 <div class="mainDiv">
-    <div class="container mt-3">
-        <div class="row mt-4">
-            <div class="col-lg-6">
+    <div class="container mt-4">
+        <div class="row " style="height: calc( 100vh - 200px );">
+            <div class="col-lg-4  m-auto">
                 <form action="" class="form">
                     <div class="form-group">
                         <label for="">Email</label>
@@ -14,6 +14,12 @@
                     <div class="form-group">
                         <label for="">Password</label>
                         <input type="password" class="form-control" [(ngModel)]="regUserDetails['uPass']" name="uPass">
+                    </div>
+                    <div class="form-group">
+                        <label for="">City / Town</label>
+                        <select [(ngModel)]="regUserDetails['town']" name="town" class="form-control">
+                            <option *ngFor="let town of townList" [value]="town">{{town}}</option>
+                        </select>
                     </div>
                     <button class="btn btn-success" (click)="registerUser()">Register</button>
                 </form>

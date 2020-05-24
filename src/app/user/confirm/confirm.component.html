@@ -1,0 +1,18 @@
+<div class="mainDiv">
+    <div class="container mt-4">
+        <div class="row " style="height: calc( 100vh - 200px );" *ngIf="confirm == 'success'">
+                <div class="m-auto">
+                    <h3 >Your registration is complete</h3>
+                    <a [routerLink]="['/login']" class="btn btn-success mx-auto">Login</a>
+                </div>
+            
+        </div>
+        <div class="row " style="height: calc( 100vh - 200px );" *ngIf="confirm == 'error'">
+            <div class="m-auto">
+                <h2>Sorry,the link has expired.</h2>
+                <p>the link was set to expire after two days.</p>
+                <a href="">Resend Confirmation Email</a>
+            </div>
+        </div>
+    </div>
+</div>
