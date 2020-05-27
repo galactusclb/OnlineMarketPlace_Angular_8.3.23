@@ -1,0 +1,54 @@
+<div class="row mt-4">
+    <div class="col-lg-12">
+        <form action="" class="col-lg-8 form">
+            <div class="row">
+                <div class="col-lg-6 col-lx-6 form-group">
+                    <label for="">First name <span class="required">*</span></label>
+                    <input type="text" [(ngModel)]="details['fname']" name="fName" class="form-control">
+                </div>
+                <div class="col-lg-6 col-lx-6 form-group">
+                    <label for="">Last name <span class="required">*</span></label>
+                    <input type="text" [(ngModel)]="details['lname']" name="lName" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-lx-12 form-group">
+                    <label for="">User name <span class="required">*</span></label>
+                    <input type="text" [(ngModel)]="details['uname']" name="uName" class="form-control">
+                    <small class="form-text text-muted">This will be how your name will be displayed in the account section and in reviews</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-lx-12 form-group">
+                    <label for="">Email address <span class="required">*</span></label>
+                    <input type="email" [(ngModel)]="details['email']" name="email" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-lx-12 form-group">
+                    <label for="">Town <span class="required">*</span></label>
+                    <select [(ngModel)]="details['town']" name="town" class="form-control">
+                        <option *ngFor="let town of townList" [value]="town">{{town}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-lx-12 form-group">
+                    <label for="">Address <span class="required">*</span></label>
+                    <input type="text" [(ngModel)]="details['address']" name="address" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-lx-12 form-group">
+                    <label for="">Phone <span class="required">*</span></label>
+                    <input type="tel" [(ngModel)]="details['phone']" name="phone" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <button type="submit" (click)="updateChanges()" [disabled]="action ? true : false" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

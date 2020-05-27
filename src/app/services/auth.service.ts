@@ -18,6 +18,9 @@ export class AuthService {
   private _loginUrl = this.url+"login"
   private _getPermisionUserUrl = this.url+"getPermisionUser"
   private _confirmEmailUrl = this.url+"confirmemail"
+  private _getbasicuserdetailsbyuidUrl= this.url+"getbasicuserdetailsbyuid"
+  private _updateprofileUrl = this.url+"updateprofile";
+  private _updatepassword = this.url+"updatepassword"
 
   user$ : Observable<User>;
 
@@ -45,7 +48,17 @@ export class AuthService {
         alert(error.error);
         return of(false);
       })
-    );
+      );
+    }
+
+  getbasicuserdetailsbyuid(){
+    return this.http.get<any>(this._getbasicuserdetailsbyuidUrl )
+  }
+  updateprofile(details){
+    return this.http.post<any>(this._updateprofileUrl,details )
+  }
+  updatepassword(details){
+    return this.http.post<any>(this._updatepassword,details )
   }
 
   logout(){

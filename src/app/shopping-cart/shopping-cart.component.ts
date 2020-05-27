@@ -50,19 +50,46 @@ export class ShoppingCartComponent implements OnInit {
   getCartItems(){
     this.productAddedTocart=this._cart.getProductFromCart();
 
-    for (let i in this.productAddedTocart) {
-      this.productAddedTocart[i].Quantity= 1;
+    const ids = []
 
-      this.totCost = this.totCost + this.productAddedTocart[i].price * this.productAddedTocart[i].Quantity;
-    }
+    if (this.productAddedTocart !== null && this.productAddedTocart.length > 0 ) {
 
-    if (this.productAddedTocart == null) {
+      for (let i in this.productAddedTocart) {
+        this.productAddedTocart[i].Quantity= 1;
+        ids.push(this.productAddedTocart[i].id)
+      }
 
-    }else{
-      this.totItems = this.productAddedTocart.length;
+      this._product.getitemsbyids(ids)
+        .subscribe(
+            res=>{
+              console.log(res);
+              for (let i = 0; i < res.length; i++) {
+                for (let j = 0; j < this.productAddedTocart.length; j++) {
+                  if (this.productAddedTocart[j].id == res[i].id) {
+                    this.productAddedTocart[j].price = res[i].price;
+                  }              
+                }
+              };
+
+              for (let i in this.productAddedTocart) {
+                this.productAddedTocart[i].Quantity= 1;
+          
+                this.totCost = this.totCost + this.productAddedTocart[i].price * this.productAddedTocart[i].Quantity;
+              }
+          
+              if (this.productAddedTocart == null) {
+          
+              }else{
+                this.totItems = this.productAddedTocart.length;
+              }
+              
+              this.totFee = this.totCost + this.fee;
+            },
+            err=>console.log(err)
+        )
     }
     
-    this.totFee = this.totCost + this.fee;
+
   }
 
   cal( event , id){
@@ -123,8 +150,7 @@ export class ShoppingCartComponent implements OnInit {
       const user = this._auth.decode();
       const userId = user.subject[0].userName
 
-      xd.push({ userId : userId })
-      xd.push( {cost : this.totFee } )
+      xd.push({ userId : userId , cost : this.totFee})
   
       for (let i = 0; i < this.productAddedTocart.length; i++) {
         xd.push( this.productAddedTocart[i] )

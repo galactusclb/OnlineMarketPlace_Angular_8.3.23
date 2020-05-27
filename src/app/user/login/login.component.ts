@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
           success => {
             if (success) {
               this._auth.getLoginStatus(true);
-              this._router.navigate(['/register']);
+              this._router.navigate(['/home']);
             }
           }
         )

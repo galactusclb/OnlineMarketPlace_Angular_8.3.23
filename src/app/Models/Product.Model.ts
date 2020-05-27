@@ -1,7 +1,6 @@
 
-export interface Product
+export class Product
 {
-    [x: string]: any;
     // Id:number;
     // Name:string;
     // Description:string;
@@ -15,16 +14,20 @@ export interface Product
     // SellerName:string;
 
     category: string;
-​​
-    discount:number;
-    ​​
-    id: number;
-    ​​
-    name: string
-    ​​
-    pic: string
-    ​​
-    price: number
-    ​​
-    qty: number
+    id: number;    ​​
+    name: string;    ​​
+    pic: string;    ​​
+    qty: number;
+    Quantity: number;
+    price: number;
+    // price: number;    ​​
+    //discount:number;    ​​
+
+    constructor(productRes:any){
+        this.category = productRes.category;
+        this.id = productRes.id;
+        this.name = productRes.name;      ​​
+        this.pic = productRes.pic;
+        ​​this.qty = productRes.qty;
+​​  }
 }

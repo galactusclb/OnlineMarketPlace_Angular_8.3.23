@@ -59,7 +59,7 @@ export class CartService {
   }
   getCartCount(){
     let count = 0;
-    console.log(this.getProductFromCart())
+    //console.log(this.getProductFromCart())
     if (this.getProductFromCart() != null ) {
       const productAddedTocart=this.getProductFromCart();
       count = productAddedTocart.length

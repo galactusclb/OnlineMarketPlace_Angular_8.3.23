@@ -9,6 +9,7 @@ export class ProductsService {
   url:string = "http://localhost:3000/api/"
 
   private _getItemsUrl = this.url+"getItems";
+  private _getitemsbyidsUrl = this.url+"getitemsbyids";
   private _getProductDetailsHistoryUrl = this.url+"getProductDetailsHistory";
   private _getProductDetailsUrl = this.url+"getProductDetails";
   private _getMainCategoriesListUrl = this.url+"getMainCategoriesList";
@@ -29,6 +30,7 @@ export class ProductsService {
   private _productsOrderUrl = this.url+"productsOrder"
   private _getOrderListUrl = this.url+"getOrderList"
   private _getOrderByTrackIdUrl = this.url+"getOrderByTrackId"
+  private _getOrderByUserIdUrl = this.url+"getOrderByUserId"
   private _getOrderDetailsByTrackIdUrl = this.url+"getOrderDetailsByTrackId"
   private _ordersStatusChangeUrl = this.url+"orderStatusChange";
   private _updateProductVisibiltyUrl = this.url+"updateProductVisibilty"
@@ -54,6 +56,9 @@ export class ProductsService {
   }
   getItems(shop){
     return this.http.get<any> (this._getItemsUrl,{ params : { category : shop }})
+  }
+  getitemsbyids(ids){
+    return this.http.get<any> (this._getitemsbyidsUrl,{ params : { idList : ids }})
   }
   getProductDetails(id){
     return this.http.get<any> (this._getProductDetailsUrl,{ params : { productId : id }})
@@ -124,8 +129,10 @@ export class ProductsService {
     return this.http.get<any> ( this._getOrderListUrl);
   }
   getOrderByTrackId(id){
-    console.log(id)
     return this.http.get<any>( this._getOrderByTrackIdUrl , { params : { trackId : id }})
+  }
+  getOrderByUserId(id){
+    return this.http.get<any>( this._getOrderByUserIdUrl , { params : { UserId : id }})
   }
   getOrderDetailsByTrackId(id){
     console.log(id)

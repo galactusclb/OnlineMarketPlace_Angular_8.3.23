@@ -85,21 +85,23 @@ export class ShoppingComponent implements OnInit {
 
 
     OnAddCart(product:Product){
-        console.log(product['id'])
+
+        let prod = new Product(product)
+        console.log(prod)
+        // console.log(product['id'])
         
-        console.log(product)
+        // console.log(product)
 
         
         this.productAddedTocart=this._cart.getProductFromCart();
         if (this.productAddedTocart == null) {
             this.productAddedTocart = []
-            this.productAddedTocart.push(product)
+            this.productAddedTocart.push(prod)
             this._cart.addProductToCart(this.productAddedTocart)
-
         } else {
-            var index = this.productAddedTocart.findIndex(x => x.id== product.id)
+            var index = this.productAddedTocart.findIndex(x => x.id== prod.id)
             if (index === -1){
-                this.productAddedTocart.push(product)
+                this.productAddedTocart.push(prod)
                 this._cart.addProductToCart(this.productAddedTocart)
             }else{
                 console.log('Already added')

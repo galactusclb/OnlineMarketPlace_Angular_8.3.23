@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.14",
+    "@angular/animations": "^8.2.14",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
     "@angular/core": "~8.2.14",
@@ -23,6 +23,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "metismenu": "^3.0.6",
+    "ngx-perfect-scrollbar": "^9.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

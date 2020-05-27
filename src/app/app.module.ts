@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //components
 import { AppComponent } from './app.component';
@@ -23,6 +24,11 @@ import { PageNotFoundComponent } from './wildCardPages/page-not-found/page-not-f
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
 import { ConfirmComponent } from './user/confirm/confirm.component';
+import { SidebarComponent } from './user/user-profile/sidebar/sidebar.component';
+import { AccountComponent } from './user/user-profile/account/account.component';
+import { OrdersComponent } from './user/user-profile/orders/orders.component';
+import { PasswordComponent } from './user/user-profile/account/password/password.component';
+import { EditAddressComponent } from './user/user-profile/account/edit-address/edit-address.component';
 
 //servicess
 import { ProductsService } from './products.service';
@@ -33,6 +39,14 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
 //guard
 import { AuthGuard } from './guard/auth.guard';
 import { RoleGuard } from './guard/role.guard';
+
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
+  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 
 @NgModule({
   declarations: [
@@ -53,15 +67,27 @@ import { RoleGuard } from './guard/role.guard';
     PageNotFoundComponent,
     UserProfileComponent,
     CatalogSearchComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    SidebarComponent,
+    AccountComponent,
+    OrdersComponent,
+    PasswordComponent,
+    EditAddressComponent
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PerfectScrollbarModule,
+    BrowserAnimationsModule
   ],
   providers: [ProductsService, CartService,AuthService,AuthGuard,RoleGuard,
+  {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,

@@ -19,6 +19,10 @@ import { PageNotFoundComponent } from './wildCardPages/page-not-found/page-not-f
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { CatalogSearchComponent } from './catalog-search/catalog-search.component';
 import { ConfirmComponent } from './user/confirm/confirm.component';
+import { AccountComponent } from './user/user-profile/account/account.component';
+import { OrdersComponent } from './user/user-profile/orders/orders.component';
+import { PasswordComponent } from './user/user-profile/account/password/password.component';
+import { EditAddressComponent } from './user/user-profile/account/edit-address/edit-address.component';
 
 
 const routes: Routes = [
@@ -58,6 +62,13 @@ const routes: Routes = [
   {
     path: 'userProfile',
     component: UserProfileComponent,
+    children : [
+      { path: '' , redirectTo: 'account', pathMatch: 'full'},
+      { path: 'account', component: AccountComponent},
+      { path: 'orders', component: OrdersComponent},
+      { path: 'password', component: PasswordComponent },
+      { path: 'edit-address', component: EditAddressComponent }
+    ],
     canActivate: [AuthGuard,RoleGuard],
     data: {role: ['admin','user']}
   },
