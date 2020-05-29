@@ -36,6 +36,87 @@
     width: 390px;
     height: 143px;
 }
+
+
+
+
+
+/* Parallax info */
+
+.parallax-container {
+    position: relative;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+}
+.material-parallax {
+    position: absolute;
+    top: 0;
+    left: -1px;
+    right: -1px;
+    bottom: 0;
+    z-index: 0;
+    background-position: center center;
+}
+.material-parallax img {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    min-width: 101%;
+    min-height: 101%;
+    max-width: none;
+    transform: translate3d(-50%, 0, 0);
+}
+.dark-overlay::before, .darken-overlay::before {
+    content: '';
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.61);
+}
+
+.fadeInLeft {
+	-webkit-animation-name: fadeInLeft;
+	animation-name: fadeInLeft;
+}
+.box-icon-modern {
+	text-align: left;
+}
+.box-icon-modern-header {
+	display: inline-flex;
+	align-items: center;
+    width: 100%;
+	min-height: 60px;
+}
+.box-icon-modern-icon {
+	font-size: 36px;
+	line-height: 1;
+    color: #7fd02c;
+    margin: 0 auto;
+}
+.box-icon-modern-title,.box-icon-modern-text{
+    color:#fff
+}
+.box-icon-modern-title{
+    text-transform: uppercase;
+}
+.box-icon-modern-title a{
+    text-decoration: none;
+    color: #fff;
+}
+
+/* end parallax info */
+
+
+
+
+
+
+
+
 .row-title{
     font-size: 16px;
     /* background: #51aa1b; */
@@ -340,13 +421,47 @@
 
 
 
-
-
 @media (min-width: 1200px) { 
     .container, .container-lg, .container-md, .container-sm, .container-xl {
         max-width: 1250px;
     }
+    .section-xxl {
+        padding: 110px 0;
+    }
+    .box-icon-modern-header {
+        min-height: 80px;
+    }
+    .box-icon-modern-icon {
+        font-size: 50px;
+    }
 }
+@media (min-width: 992px){
+    .section-xxl {
+        padding: 100px 0;
+    }
+    .box-icon-modern-header {
+        min-height: 60px;
+    }
+    * + .box-icon-modern-text {
+        margin-top: 14px;
+    }
+    .box-icon-modern-text {
+        max-width: 95%;
+    }
+}
+@media (min-width: 768px){
+    .section-xxl {
+        padding: 90px 0;
+    }
+    .box-icon-modern-icon {
+        font-size: 42px;
+    }
+}
+
+
+
+
+
 @media (max-width: 767.98px) { 
     .see-more{
         justify-content: center;
