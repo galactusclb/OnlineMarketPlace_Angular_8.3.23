@@ -4,6 +4,7 @@ import { FormsModule} from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxPaginationModule} from 'ngx-pagination'
 
 //components
 import { AppComponent } from './app.component';
@@ -36,12 +37,12 @@ import { CartService } from './cart.service';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+
 //guard
 import { AuthGuard } from './guard/auth.guard';
 import { RoleGuard } from './guard/role.guard';
 
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,
-  PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -81,7 +82,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     HttpClientModule,
     PerfectScrollbarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   providers: [ProductsService, CartService,AuthService,AuthGuard,RoleGuard,
   {

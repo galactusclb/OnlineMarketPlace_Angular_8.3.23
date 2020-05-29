@@ -9,6 +9,7 @@
     background: #e8e8e8;
     padding: 25px 30px;
 }
+
 .cart-header{
     padding: 10px 20px 20px 0;
     border-bottom: solid 1px rgb(187, 187, 187);
@@ -19,6 +20,21 @@
 }
 .cart-header span,.cart-header i{
     cursor: pointer;
+}
+.cart_header_th {
+    background: #293036;
+    padding: 15px 26px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: #fff;
+}
+.cart_header_th  span {
+    text-align: left;
+    color: #fff;
+}
+.item_qty_th{
+    display: flex;
+    justify-content: center;
 }
 .item-row{
    margin-top: 30px; 
@@ -55,6 +71,26 @@
 .prod-price{
     color: #6e6e6e;
 }
+.prod-price p{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+.percent-discount{
+    font-size: 14px;
+    text-align: center;
+}
+.discount-price{
+    font-weight: 700;
+    text-align: center;
+    color: #212529;
+}
+.prod-price p del{
+    text-align: center;
+}
+.prod-delete span, .prod-delete span i{
+    cursor: pointer;
+}
 .summary-line{
     padding: 5px 0;
 }
@@ -75,4 +111,9 @@
     background: #282828;
     color: #fff;
     font-size: 13px;
+    cursor: pointer;
+}
+.btn-proceed:disabled{
+    background: #646464;
+    cursor: no-drop;
 }

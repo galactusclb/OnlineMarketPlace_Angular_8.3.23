@@ -1,3 +1,8 @@
+*{
+    color: #566787;
+		font-family: 'Varela Round', sans-serif;
+		font-size: 13px;
+}
 .required{
     color: red;
     font-weight: 700;

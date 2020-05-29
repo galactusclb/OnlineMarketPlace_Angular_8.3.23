@@ -54,7 +54,8 @@ export class ShoppingCartComponent implements OnInit {
 
     if (this.productAddedTocart !== null && this.productAddedTocart.length > 0 ) {
 
-      for (let i in this.productAddedTocart) {
+      //add default quantity size to products
+      for (let i in this.productAddedTocart) { 
         this.productAddedTocart[i].Quantity= 1;
         ids.push(this.productAddedTocart[i].id)
       }
@@ -63,18 +64,31 @@ export class ShoppingCartComponent implements OnInit {
         .subscribe(
             res=>{
               console.log(res);
+
+              //add price,discount from db to model
               for (let i = 0; i < res.length; i++) {
                 for (let j = 0; j < this.productAddedTocart.length; j++) {
                   if (this.productAddedTocart[j].id == res[i].id) {
                     this.productAddedTocart[j].price = res[i].price;
+                    this.productAddedTocart[j].discount = res[i].discount;
+
+                    const price = this.productAddedTocart[j].price;
+                    const discount = this.productAddedTocart[j].discount;
+                    let discountPrice: number = price;
+                    if (this.productAddedTocart[j].discountOn) {
+                      discountPrice = price - (price * discount/100)                    
+                    }
+
+                    this.productAddedTocart[j].discountPrice = discountPrice;
                   }              
                 }
               };
 
               for (let i in this.productAddedTocart) {
                 this.productAddedTocart[i].Quantity= 1;
-          
-                this.totCost = this.totCost + this.productAddedTocart[i].price * this.productAddedTocart[i].Quantity;
+                
+                this.productAddedTocart[i].productSubTotal = this.productAddedTocart[i].discountPrice * this.productAddedTocart[i].Quantity
+                this.totCost = this.totCost + this.productAddedTocart[i].discountPrice * this.productAddedTocart[i].Quantity;
               }
           
               if (this.productAddedTocart == null) {
@@ -98,7 +112,7 @@ export class ShoppingCartComponent implements OnInit {
       if (event.target.className == 'minus') {
           const input = event.target.nextElementSibling
           count = parseInt(input.value)
-          if(count != 0 ){
+          if(count != 1 ){
               count = count - 1 ;
               input.value = count
 
@@ -126,7 +140,9 @@ export class ShoppingCartComponent implements OnInit {
           if (this.productAddedTocart[i].id == id) {
               this.productAddedTocart[i].Quantity=  count;
           }
-          this.totCost = this.totCost + this.productAddedTocart[i].price * this.productAddedTocart[i].Quantity;
+
+          this.productAddedTocart[i].productSubTotal = this.productAddedTocart[i].discountPrice * this.productAddedTocart[i].Quantity
+          this.totCost = this.totCost + this.productAddedTocart[i].discountPrice * this.productAddedTocart[i].Quantity;
       }
 
       this.totItems = this.productAddedTocart.length;
@@ -143,8 +159,35 @@ export class ShoppingCartComponent implements OnInit {
     this._cart.updateCartCount(0);// update cart count
   }
 
+  removeItem(id){
+    //console.log(id)
+    //for (let i = 0; i < this.productAddedTocart.length; i++) {
+      //}
+      //console.log(this.productAddedTocart)
+      let arr =[]
+      let arr2 = []
+      arr =  this.productAddedTocart.filter(item => item.id !== id)
+
+      console.log(arr)
+      for (let i = 0; i < arr.length; i++) {
+        let prod = new Product(arr[i])
+        arr2.push(prod)
+      }
+
+      this._cart.addProductToCart(arr2);
+
+      this.totCost = 0;
+      this.totFee= 0;
+      this.getCartItems();
+
+
+      this.totItems = this.productAddedTocart.length
+      this._cart.updateCartCount(this.totItems);
+  }
+
   proceedOrder(){
-    if (this._auth.loggedIn()) {
+    if (this._auth.loggedIn() && (this.productAddedTocart !== null && this.productAddedTocart.length > 0 )) {
+      console.log('clicked')
       const xd = []
 
       const user = this._auth.decode();
@@ -160,6 +203,13 @@ export class ShoppingCartComponent implements OnInit {
             res=>{
                console.log(res)
                this.removeAll()
+              
+               this.totItems = this.productAddedTocart.length
+
+               if (this.totItems === null) {
+                 this.totItems = 0;
+               }
+               this._cart.updateCartCount(this.totItems);
             },
             err=>console.log(err)
           )

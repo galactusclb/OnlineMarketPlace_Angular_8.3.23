@@ -14,7 +14,7 @@ import { Product } from '../Models/Product.Model';
 export class ShoppingComponent implements OnInit {
 
   productAddedTocart:Product[];
-  products = []
+  products = [] 
 
   shopType:any;
   shopTypeTitle:any ;
@@ -51,6 +51,24 @@ export class ShoppingComponent implements OnInit {
         .subscribe(
           res => {
             this.products = res
+
+            for (let i = 0; i < res.length; i++) {
+              for (let j = 0; j < this.products.length; j++) {
+                if (this.products[j].id == res[i].id) {
+                  this.products[j].price = res[i].price;
+                  this.products[j].discount = res[i].discount;
+
+                  const price = this.products[j].price;
+                  const discount = this.products[j].discount;
+                  let discountPrice: number = price;
+                  if (this.products[j].discountOn) {
+                     discountPrice = price - (price * discount/100)                    
+                  }
+
+                  this.products[j].discountPrice = discountPrice;
+                }              
+              }
+            };
           },
           err => console.log(err)
         )

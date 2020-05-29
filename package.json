@@ -23,6 +23,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "metismenu": "^3.0.6",
+    "ngx-pagination": "^5.0.0",
     "ngx-perfect-scrollbar": "^9.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

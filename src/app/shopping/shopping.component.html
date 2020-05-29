@@ -53,8 +53,8 @@
                                     {{product['name']}}
                                 </p>
                                 <span class="price">
-                                    <del *ngIf="product['discountOn'] == 1 ">Rs.{{product['discount']}}.00</del> 
-                                    <span class="current-price">Rs.{{product['price']}}.00</span>
+                                    <del *ngIf="product['discountOn'] == 1 ">Rs.{{product['price']}}</del> 
+                                    <span class="current-price">Rs.{{product['discountPrice']}}</span>
                                 </span>
                                 <div class="product-add-to-cart">
                                     <!-- <label>Qty : </label> -->

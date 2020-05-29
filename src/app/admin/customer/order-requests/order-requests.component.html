@@ -1,12 +1,54 @@
 <div class="row mt-4">
-    <div class="col-xl-8 margin-auto">
+    <div class="col-xl-11 margin-auto">
         <div class="card-box borderShadow">
            <h4 class="header-title mb-4">Orders</h4>
+            
+           <form action="" class="form searchingParam mt-3 mb-3">
+                
+                
+           </form>
+           <div class="table-wrapper">
+            <div class="table-filter">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="show-entries">
+                            <span>Show</span>
+                            <select [(ngModel)]="prodCount" name="prodCount" class="form-control">
+                                <option  [value]="10">10</option>
+                                <option  [value]="25">25</option>
+                                <option  [value]="50">50</option>
+                                <option  [value]="100">100</option>
+                            </select>
+                            <span>entries</span>
+                        </div>
+                    </div>
+                    <form action="" class="form col-sm-9 searchingParam" >
+                        <button type="button" (click)="searchTable()" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        <div class="filter-group">
+                            <label>Customer/OrderId</label>
+                            <input type="text" [(ngModel)]="searchingParam['searchInput']" name="searchInput" class="form-control">
+                        </div>
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select [(ngModel)]="searchingParam['status']" name="status" class="form-control">
+                                <option value="">Any</option>
+                                <option value="pending">Pending</option>
+                                <option value="accepted">Accepted</option>
+                                <option value="cancelled">Cancelled</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </div>
+                        <span class="filter-icon"><i class="fa fa-filter"></i></span>
+                    </form>
+                </div>
+            </div>
+           </div>
            <div class="table-responsive">
                 <table class="table table-hover table-centered m-0">
                     <thead>
                         <tr>
-                            <th>Order Id</th>
+                            <th>#</th>
+                            <th>Customer</th>
                             <th>Total Price</th>
                             <th>Discount</th>
                             <th>Total Item Types </th>
@@ -16,8 +58,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of orderList" >
+                        <tr *ngIf="orderList.length == 0">
+                            <td colspan="8" style="text-align: center;">no result found</td>
+                        </tr>
+                        <tr *ngFor="let item of orderList | paginate : { itemsPerPage : prodCount , currentPage : p  }, let i = index " >
                             <td>{{item['orderTrackId']}}</td>
+                            <td>{{item['userId']}}</td>
                             <td>{{item['totPrice']}}</td>
                             <td>{{item['discount']}}</td>
                             <td>{{item['totItemsType']}}</td>
@@ -28,7 +74,7 @@
                                     <select value="{{item['status']}}" name="collector_1" (change)="changeButton(item['sid'],$event)" class="form-control">
                                         <option value="pending">Pending</option>
                                         <option value="accepted">Accepted</option>
-                                        <option value="decline">Decline</option>
+                                        <option value="cancelled">Cancelled</option>
                                         <option value="delivered">Delivered</option>
                                     </select>  
                                     <button (click)="changeStatus($event,item['sid'] )" class="btn btn-primary save-button hide" type="submit">
@@ -36,7 +82,7 @@
                                     </button>
                                 </form>
                             </td>
-                            <th>
+                            <td>
                                 <div class="dropdown">
                                     <span class="drop_menu" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-ellipsis-v" ></i>
@@ -45,10 +91,28 @@
                                       <button type="button" class="btn dropdown-item" [routerLink]="['/admin/orderDetails']" [queryParams]="{ trackId : item['orderTrackId'] }">Details</button>
                                     </div>
                                 </div>
-                            </th>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="row mt-4 mb-2">
+                <div class="col-6">
+                    Showing 
+                    {{ prodCount * ( p - 1) + 1}} 
+                    to 
+                    <ng-container></ng-container>
+                    {{ prodCount * p }} 
+                    of 
+                    {{orderList.length}}
+                </div>
+                <pagination-controls 
+                    [maxSize]="maxSize" 
+                    [directionLinks]="directionLinks"
+                    [autoHide]="autoHide"
+                    [responsive]="responsive"
+                    (pageChange)="p = $event">
+                </pagination-controls>
             </div>
         </div>
     </div>

@@ -13,6 +13,22 @@ export class ProductListComponent implements OnInit {
 
   productList = []
 
+  p:number = 1;
+  noOfProd:number = 10;
+  prodCount:number = 15;
+  public maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
+
+  public labels: any = {
+    previousLabel: '<--',
+    nextLabel: '-->',
+    screenReaderPaginationLabel: 'Pagination',
+    screenReaderPageLabel: 'page',
+    screenReaderCurrentLabel: `You're on page`
+};
+
   constructor(private _product: ProductsService,private _auth:AuthService, private renderer: Renderer2,private _router:Router) { }
 
   ngOnInit() {

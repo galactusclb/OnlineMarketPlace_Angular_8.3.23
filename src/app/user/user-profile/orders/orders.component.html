@@ -1,7 +1,25 @@
 <div class="row mt-4">
     <div class="col-xl-8 margin-auto">
         <div class="card-box borderShadow">
-           <h4 class="header-title mb-4">Orders</h4>
+           <h4 class="header-title ">Orders</h4>
+           <div class="table-wrapper">
+            <div class="table-filter">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="show-entries">
+                            <span>Show</span>
+                            <select [(ngModel)]="prodCount" name="prodCount" class="form-control">
+                                <option  [value]="10">10</option>
+                                <option  [value]="25">25</option>
+                                <option  [value]="50">50</option>
+                                <option  [value]="100">100</option>
+                            </select>
+                            <span>entries</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
            <div class="table-responsive">
                 <table class="table table-hover table-centered m-0">
                     <thead>
@@ -17,13 +35,20 @@
                     </thead>
                     <tbody>
                         <ng-container *ngIf="orderList.length > 0">
-                            <tr *ngFor="let item of orderList" >
+                            <tr *ngFor="let item of orderList | paginate : { itemsPerPage : prodCount , currentPage : p  }, let i = index" >
                                 <td>{{item['orderTrackId']}}</td>
                                 <td>{{item['totPrice']}}</td>
                                 <td>{{item['discount']}}</td>
                                 <td>{{item['totItemsType']}}</td>
                                 <td>{{item['date']}}</td>
-                                <td>{{item['status']}}</td>
+                                <td>
+                                    <span class="status text-warning" *ngIf="item['status']=='pending'">&bull;</span>
+                                    <span class="status text-danger" *ngIf="item['status']=='cancelled'">&bull;</span>
+                                    <span class="status text-info" *ngIf="item['status']=='accepted'">&bull;</span>
+                                    <span class="status text-success" *ngIf="item['status']=='delivered'">&bull;</span> 
+                                    
+                                    {{item['status']}}
+                                </td>
                             </tr>
                         </ng-container>
                         <tr *ngIf="orderList.length == 0">
@@ -31,6 +56,24 @@
                         </tr>                      
                     </tbody>
                 </table>
+            </div>
+            <div class="row mt-4 mb-2">
+                <div class="col-6">
+                    Showing 
+                    {{ prodCount * ( p - 1) + 1}} 
+                    to 
+                    <ng-container></ng-container>
+                    {{ prodCount * p }} 
+                    of 
+                    {{orderList.length}}
+                </div>
+                <pagination-controls 
+                    [maxSize]="maxSize" 
+                    [directionLinks]="directionLinks"
+                    [autoHide]="autoHide"
+                    [responsive]="responsive"
+                    (pageChange)="p = $event">
+                </pagination-controls>
             </div>
         </div>
     </div>

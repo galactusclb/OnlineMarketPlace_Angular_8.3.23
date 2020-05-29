@@ -20,8 +20,10 @@ export class Product
     qty: number;
     Quantity: number;
     price: number;
-    // price: number;    ​​
-    //discount:number;    ​​
+    discount:number;  
+    discountPrice:number; ​​ 
+    productSubTotal:number;
+  discountOn: boolean;
 
     constructor(productRes:any){
         this.category = productRes.category;
@@ -30,4 +32,12 @@ export class Product
         this.pic = productRes.pic;
         ​​this.qty = productRes.qty;
 ​​  }
+
+    // setProduct(prod){
+    //     this.category = prod.category;
+    //     this.id = prod.id;
+    //     this.name = prod.name;      ​​
+    //     this.pic = prod.pic;
+    //     ​​this.qty = prod.qty;
+    // }
 }

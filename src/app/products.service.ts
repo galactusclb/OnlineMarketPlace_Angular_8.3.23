@@ -32,6 +32,7 @@ export class ProductsService {
   private _getOrderByTrackIdUrl = this.url+"getOrderByTrackId"
   private _getOrderByUserIdUrl = this.url+"getOrderByUserId"
   private _getOrderDetailsByTrackIdUrl = this.url+"getOrderDetailsByTrackId"
+  private _searchOrderReqTableUrl = this.url+"searchorderreqtable"
   private _ordersStatusChangeUrl = this.url+"orderStatusChange";
   private _updateProductVisibiltyUrl = this.url+"updateProductVisibilty"
   private _updateProductDiscountOnOffUrl = this.url+"updateProductDiscountOnOff"
@@ -137,5 +138,11 @@ export class ProductsService {
   getOrderDetailsByTrackId(id){
     console.log(id)
     return this.http.get<any>( this._getOrderDetailsByTrackIdUrl , { params : { trackId : id }})
+  }
+
+
+
+  searchOrderReqTable(params){ // order-request component
+    return this.http.get<any>( this._searchOrderReqTableUrl , { params : params })
   }
 }

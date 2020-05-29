@@ -7,13 +7,30 @@ import { ProductsService } from 'src/app/products.service';
   styleUrls: ['./order-requests.component.css']
 })
 export class OrderRequestsComponent implements OnInit {
+
+  searchingParam = {}
+
   orderList: any = [];
   orderListCopy:any = [] 
+
+  p:number = 1;
+  prodCount:number = 25;
+  public maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
 
   constructor(private _product:ProductsService,private renderer:Renderer2) { }
 
   ngOnInit() {
     this.getAllProducts()
+
+    this.searchingParam['status'] = '';
+  }
+
+
+  absoluteIndex(indexOnPage: number): number {
+    return this.prodCount * (this.p - 1) + indexOnPage;
   }
 
   getAllProducts(){
@@ -27,6 +44,17 @@ export class OrderRequestsComponent implements OnInit {
           err=> console.log(err)
         )
 
+  }
+  searchTable(){
+    this._product.searchOrderReqTable(this.searchingParam)
+    .subscribe(
+      res=> {
+        console.log(res),
+        this.orderList = res
+        this.orderListCopy = res
+      },
+      err=> console.log(err)
+    )
   }
 
   save(event,sid){

@@ -15,6 +15,13 @@ export class OrdersComponent implements OnInit {
 
   username:any ;
 
+  p:number = 1;
+  prodCount:number = 25;
+  public maxSize: number = 7;
+  public directionLinks: boolean = true;
+  public autoHide: boolean = false;
+  public responsive: boolean = true;
+
   constructor(private _prod:ProductsService,private _auth:AuthService,private _router:Router) { }
 
   ngOnInit() {

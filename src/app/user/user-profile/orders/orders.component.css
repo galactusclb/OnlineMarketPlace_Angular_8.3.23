@@ -1,3 +1,9 @@
+*{
+    color: #566787;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 13px;
+}
+
 .hide{
     display: none;
 }
@@ -126,3 +132,94 @@
     margin-left:40px;
 }
 
+
+
+
+.table-wrapper {
+    background: #fff;
+    padding: 20px 25px;
+    
+}
+.table-wrapper .btn {
+    float: right;
+    color: #333;
+    background-color: #fff;
+    border-radius: 3px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
+}
+.table-wrapper .btn:hover {
+    color: #333;
+    background: #f2f2f2;
+}
+.table-wrapper .btn.btn-primary {
+    color: #fff;
+    background: #03A9F4;
+}
+.table-wrapper .btn.btn-primary:hover {
+    background: #03a3e7;
+}
+.show-entries select.form-control {        
+    width: 60px;
+    margin: 0 5px;
+}
+.table-filter .filter-group {
+    float: right;
+    margin-left: 15px;
+}
+.table-filter input, .table-filter select {
+    height: 34px;
+    border-radius: 3px;
+    border-color: #ddd;
+    box-shadow: none;
+}
+.table-filter {
+    padding: 5px 0 15px;
+    margin-bottom: 5px;
+}
+.table-filter .btn {
+    height: 34px;
+}
+.table-filter label {
+    font-weight: normal;
+    margin-left: 10px;
+}
+.table-filter select, .table-filter input {
+    display: inline-block;
+    margin-left: 5px;
+}
+.table-filter input {
+    width: 200px;
+    display: inline-block;
+}
+.filter-group select.form-control {
+    width: 110px;
+}
+.filter-icon {
+    float: right;
+    margin-top: 7px;
+}
+.filter-icon i {
+    font-size: 18px;
+    opacity: 0.7;
+}
+.status {
+    font-size: 30px;
+    margin: 2px 2px 0 0;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 10px;
+}
+.text-success {
+    color: #10c469;
+}
+.text-info {
+    color: #62c9e8;
+}
+.text-warning {
+    color: #FFC107;
+}
+.text-danger {
+    color: #ff5b5b;
+}

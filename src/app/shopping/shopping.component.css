@@ -1,8 +1,10 @@
 *{
-    font-family: "Source Sans Pro",sans-serif;
+    /* font-family: "Source Sans Pro",sans-serif; */
+    font-family: 'Varela Round', sans-serif;
     cursor: default;
+    /* color: #566787; */
+    /* font-size: 13px; */
 }
-
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin: 10px 0;
     font-weight: 600;
