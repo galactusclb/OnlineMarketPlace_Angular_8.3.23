@@ -42,6 +42,7 @@ import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,PERFECT_SCROLLB
 //guard
 import { AuthGuard } from './guard/auth.guard';
 import { RoleGuard } from './guard/role.guard';
+import { AccordianMenuComponent } from './extra/accordian-menu/accordian-menu.component';
 
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -73,7 +74,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AccountComponent,
     OrdersComponent,
     PasswordComponent,
-    EditAddressComponent
+    EditAddressComponent,
+    AccordianMenuComponent
     
   ],
   imports: [

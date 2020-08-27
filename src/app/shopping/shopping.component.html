@@ -5,10 +5,10 @@
         </div>
         <div class="row mt-4">
             <div class="col-lg-2 p-0" >
-                <div class="div-categotry">
+                <!-- <div class="div-categotry">
                     <h4 class="row-title mb-3">{{shopTypeTitle}}</h4> 
                     <button class="btn btn-warning" (click)="showGV()">mam</button>
-                    <ul>
+                     <ul>
                         <li class="expand-icon">Grocery<span><em class="porto-icon-plus-squared slideUp"></em></span>
                             <ul class="hide" >
                                 <li>asad</li>
@@ -30,8 +30,13 @@
                         <li>Baby & Toys <span><em class="porto-icon-plus-squared"></em></span></li>
                         <li>Services <span><em class="porto-icon-plus-squared"></em></span></li>
                         <li>Gift Items <span><em class="porto-icon-plus-squared"></em></span></li>
-                    </ul>
-                </div>
+                    </ul> 
+                    
+                </div> -->
+                <accordion 
+                        [options]="options" 
+                        [menus]="menus">
+                </accordion>
             </div>
             <div class="col-lg">
                 <div class="pl-3 pr-3 pb-3"> 

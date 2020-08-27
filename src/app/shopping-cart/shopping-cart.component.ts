@@ -187,7 +187,7 @@ export class ShoppingCartComponent implements OnInit {
 
   proceedOrder(){
     if (this._auth.loggedIn() && (this.productAddedTocart !== null && this.productAddedTocart.length > 0 )) {
-      console.log('clicked')
+      //console.log('clicked')
       const xd = []
 
       const user = this._auth.decode();

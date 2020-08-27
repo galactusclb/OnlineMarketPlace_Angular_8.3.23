@@ -4,6 +4,7 @@ import { ProductsService} from '../products.service'
 import { CartService } from '../cart.service';
 // import * as $ from '../../assets/js/custom.js';
 
+import { Config, Menu } from '../extra/accordian-menu/types';
 import { Product } from '../Models/Product.Model';
 
 @Component({
@@ -35,16 +36,8 @@ export class ShoppingComponent implements OnInit {
         this.getitems(this.shopType);
         this.shopTypeTitle =  this.shopType.split(/(?=[A-Z])/).join(" ");
 
-        
-        // for (let i in this.productAddedTocart) {
-        //   this.productAddedTocart[i].Quantity=1;
-        // }
       });
-
-      
-
-
-  }
+    }
 
     getitems(shop){
       this._product.getItems(shop)
@@ -129,4 +122,61 @@ export class ShoppingComponent implements OnInit {
         this.cartItemCount = this.productAddedTocart.length
         this._cart.updateCartCount(this.cartItemCount);
     }
+
+
+
+
+    options: Config = { multi: false };
+  
+    menus: Menu[] = [
+      { 
+        name: 'Grocery',
+        url: 'grocery',
+        iconClass: 'fa fa-carrot',
+        active: false,
+        submenu: [
+          { name: 'Fresh Fruits', url: 'grocery' },
+          { name: 'Fresh Vegetables', url: '' },
+          { name: 'Fresh Dairy', url: '' },
+          { name: 'Food grains & Oil', url: '' },
+          { name: 'Meats, Egg & Fish', url: '' },
+          { name: 'Spices', url: '' },
+          { name: 'Snacks & Branded Food', url: '' },
+          { name: 'Bakery & Cake', url: '' }
+        ]
+      },
+      { 
+        name: 'Beauty & Health',
+        url: 'beautyAndHealth',
+        iconClass: 'fa fa-mortar-pestle',
+        active: false,
+        submenu: [
+          { name: 'Tablets', url: '#' },
+          { name: 'Mobiles', url: '#' },
+          { name: 'Desktop', url: '#' }
+        ]
+      },
+      { 
+        name: 'Home & Kitchen',
+        url: 'homeAndKitchen',
+        iconClass: 'fas fa-blender',
+        active: false,
+        submenu: [
+          { name: 'Chrome', url: '#' },
+          { name: 'Firefox', url: '#' },
+          { name: 'Desktop', url: '#' }
+        ]
+      },
+      { 
+        name: 'Pets items',
+        url: 'pets',
+        iconClass: 'fas fa-paw',
+        active: false,
+        submenu: [
+          { name: 'Chrome', url: '#' },
+          { name: 'Firefox', url: '#' },
+          { name: 'Desktop', url: '#' }
+        ]
+      }
+    ];
 }

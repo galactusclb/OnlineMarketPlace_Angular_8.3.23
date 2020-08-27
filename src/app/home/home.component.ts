@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../Models/Product.Model';
 import { CartService } from '../cart.service';
+import { Config, Menu } from '../extra/accordian-menu/types';
 
 // declare const hide_open: any;
 
@@ -115,5 +116,62 @@ export class HomeComponent implements OnInit {
 
     this.cartItemCount = this.productAddedTocart.length
     this._cart.updateCartCount(this.cartItemCount);
-}
-}
+  }
+
+
+
+
+  options: Config = { multi: false };
+  
+    menus: Menu[] = [
+      { 
+        name: 'Grocery',
+        url: 'grocery',
+        iconClass: 'fa fa-carrot',
+        active: false,
+        submenu: [
+          { name: 'Fresh Fruits', url: 'grocery' },
+          { name: 'Fresh Vegetables', url: '' },
+          { name: 'Fresh Dairy', url: '' },
+          { name: 'Food grains & Oil', url: '' },
+          { name: 'Meats, Egg & Fish', url: '' },
+          { name: 'Spices', url: '' },
+          { name: 'Snacks & Branded Food', url: '' },
+          { name: 'Bakery & Cake', url: '' }
+        ]
+      },
+      { 
+        name: 'Beauty & Health',
+        url: 'beautyAndHealth',
+        iconClass: 'fa fa-mortar-pestle',
+        active: false,
+        submenu: [
+          { name: 'Tablets', url: '#' },
+          { name: 'Mobiles', url: '#' },
+          { name: 'Desktop', url: '#' }
+        ]
+      },
+      { 
+        name: 'Home & Kitchen',
+        url: 'homeAndKitchen',
+        iconClass: 'fas fa-blender',
+        active: false,
+        submenu: [
+          { name: 'Chrome', url: '#' },
+          { name: 'Firefox', url: '#' },
+          { name: 'Desktop', url: '#' }
+        ]
+      },
+      { 
+        name: 'Pets items',
+        url: 'pets',
+        iconClass: 'fas fa-paw',
+        active: false,
+        submenu: [
+          { name: 'Chrome', url: '#' },
+          { name: 'Firefox', url: '#' },
+          { name: 'Desktop', url: '#' }
+        ]
+      }
+    ];
+} 
