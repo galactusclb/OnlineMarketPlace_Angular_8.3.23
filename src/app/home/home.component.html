@@ -503,7 +503,7 @@
                                     </div>
                                     
                                     <div class="product-img-box">
-                                        <img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt="Delmonico Steak"   class="lazyloaded" data-was-processed="true">
+                                        <img [src]="url +'/uploads/products/'+item['pic']" alt="Delmonico Steak"   class="lazyloaded" data-was-processed="true">
                                     </div>
                                     <p class="product-title">
                                         {{item['name']}}

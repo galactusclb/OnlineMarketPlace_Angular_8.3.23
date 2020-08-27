@@ -5,12 +5,18 @@ import { AuthService } from "./services/auth.service";
 import { ProductsService } from "./products.service";
 import { Router } from "@angular/router";
 
+import { environment } from "../environments/environment";
+
+const BACKEND_URL = environment.baseUrl;
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnDestroy {
+  url = BACKEND_URL;
+
   title = "OnlineMarketPlace";
 
   searchingDetails = {};
