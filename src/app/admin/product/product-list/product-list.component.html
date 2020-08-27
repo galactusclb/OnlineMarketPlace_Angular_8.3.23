@@ -1,112 +1,158 @@
 <div class="row mt-4">
-    <div class="col-xl-10 margin-auto">
-        <div class="card-box borderShadow">
-           <h4 class="header-title mb-4">Products</h4>
-           <div class="row mt-4 mb-2">
-            <div class="col-lg-6 mb-3">
-                <div class="row">
-                    <div class="col-4">
-                        products per page 
-                    </div>
-                    <div class="col-3">
-                        <select [(ngModel)]="prodCount"  name="noOfProd" class="form-control">
-                            <option  [value]="10">10</option>
-                            <option  [value]="15">15</option>
-                            <option  [value]="20">20</option>
-                            <option  [value]="25">25</option>
-                        </select>
-                    </div>
-                </div>
+  <div class="col-xl-10 margin-auto">
+    <div class="card-box borderShadow">
+      <h4 class="header-title mb-4">Products</h4>
+      <div class="row mt-4 mb-2">
+        <div class="col-lg-6 mb-3">
+          <div class="row">
+            <div class="col-4">
+              products per page
             </div>
-            <pagination-controls 
-                [maxSize]="maxSize" 
-                [directionLinks]="directionLinks"
-                [autoHide]="autoHide"
-                [responsive]="responsive"
-                [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
-                [screenReaderPageLabel]="labels.screenReaderPageLabel"
-                [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
-                (pageChange)="p = $event">
-            </pagination-controls>
+            <div class="col-3">
+              <select
+                [(ngModel)]="prodCount"
+                name="noOfProd"
+                class="form-control"
+              >
+                <option [value]="10">10</option>
+                <option [value]="15">15</option>
+                <option [value]="20">20</option>
+                <option [value]="25">25</option>
+              </select>
+            </div>
+          </div>
         </div>
-           <div class="table-responsive">
-                <table class="table table-hover table-centered m-0">
-                    <thead style="background: #293036;">
-                        <tr>
-                            <th>#</th>
-                            <th></th>
-                            <th>Product Name</th>
-                            <th>Category</th>
-                            <th>Price</th>
-                            <th>DiscountOn/Off</th>
-                            <th>Discount</th>
-                            <th>Quantity</th>
-                            <th>Sold</th>
-                            <th>Visibility</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of productList | paginate : { itemsPerPage : prodCount , currentPage : p  }, let i = index "  >
-                            <td>{{item['id']}}</td>
-                            <td class="row-product-img"><img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt=""></td>
-                            <td>{{item['name']}}</td>
-                            <td>{{item['category']}}</td>
-                            <td>{{item['price']}}</td>
-                            <td>
-                                <div class="toggle-btn" [ngClass]="{ 'active' : item['discountOn'] == 1 } " >
-                                    <div class="circle" (click)="changeProductDiscountOnOff($event,item['id'])"></div>
-                                </div>
-                            </td>
-                            <td>{{item['discount']}}</td>
-                            <td>{{item['qty']}}</td>
-                            <td>{{item['itemSold']}}</td>
-                            <td>
-                                <div class="toggle-btn" [ngClass]="{ 'active' : item['visible'] == 1 } " >
-                                    <div class="circle" (click)="changeProductVisibilty($event,item['id'])"></div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="dropdown">
-                                    <span class="drop_menu" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-v" ></i>
-                                    </span>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <button type="button" class="btn dropdown-item" [routerLink]="['/admin/productView']" [queryParams]="{ id : item['id'] }">Details</button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row mt-4 mb-2">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-4">
-                            products per page 
-                        </div>
-                        <div class="col-3">
-                            <select [(ngModel)]="prodCount"  name="noOfProd" class="form-control">
-                                <option  [value]="10">10</option>
-                                <option  [value]="15">15</option>
-                                <option  [value]="20">20</option>
-                                <option  [value]="25">25</option>
-                            </select>
-                        </div>
-                    </div>
+        <pagination-controls
+          [maxSize]="maxSize"
+          [directionLinks]="directionLinks"
+          [autoHide]="autoHide"
+          [responsive]="responsive"
+          [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+          [screenReaderPageLabel]="labels.screenReaderPageLabel"
+          [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+          (pageChange)="p = $event"
+        >
+        </pagination-controls>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-centered m-0">
+          <thead style="background: #293036;">
+            <tr>
+              <th>#</th>
+              <th></th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>DiscountOn/Off</th>
+              <th>Discount</th>
+              <th>Quantity</th>
+              <th>Sold</th>
+              <th>Visibility</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let item of productList
+                  | paginate: { itemsPerPage: prodCount, currentPage: p };
+                let i = index
+              "
+            >
+              <td>{{ item["id"] }}</td>
+              <td class="row-product-img">
+                <img [src]="url + '/uploads/products/' + item['pic']" alt="" />
+              </td>
+              <td>{{ item["name"] }}</td>
+              <td>{{ item["category"] }}</td>
+              <td>{{ item["price"] }}</td>
+              <td>
+                <div
+                  class="toggle-btn"
+                  [ngClass]="{ active: item['discountOn'] == 1 }"
+                >
+                  <div
+                    class="circle"
+                    (click)="changeProductDiscountOnOff($event, item['id'])"
+                  ></div>
                 </div>
-                <pagination-controls 
-                    [maxSize]="maxSize" 
-                    [directionLinks]="directionLinks"
-                    [autoHide]="autoHide"
-                    [responsive]="responsive"
-                    [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
-                    [screenReaderPageLabel]="labels.screenReaderPageLabel"
-                    [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
-                    (pageChange)="p = $event">
-                </pagination-controls>
+              </td>
+              <td>{{ item["discount"] }}</td>
+              <td>{{ item["qty"] }}</td>
+              <td>{{ item["itemSold"] }}</td>
+              <td>
+                <div
+                  class="toggle-btn"
+                  [ngClass]="{ active: item['visible'] == 1 }"
+                >
+                  <div
+                    class="circle"
+                    (click)="changeProductVisibilty($event, item['id'])"
+                  ></div>
+                </div>
+              </td>
+              <td>
+                <div class="dropdown">
+                  <span
+                    class="drop_menu"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <button
+                      type="button"
+                      class="btn dropdown-item"
+                      [routerLink]="['/admin/productView']"
+                      [queryParams]="{ id: item['id'] }"
+                    >
+                      Details
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row mt-4 mb-2">
+        <div class="col-6">
+          <div class="row">
+            <div class="col-4">
+              products per page
             </div>
+            <div class="col-3">
+              <select
+                [(ngModel)]="prodCount"
+                name="noOfProd"
+                class="form-control"
+              >
+                <option [value]="10">10</option>
+                <option [value]="15">15</option>
+                <option [value]="20">20</option>
+                <option [value]="25">25</option>
+              </select>
+            </div>
+          </div>
         </div>
+        <pagination-controls
+          [maxSize]="maxSize"
+          [directionLinks]="directionLinks"
+          [autoHide]="autoHide"
+          [responsive]="responsive"
+          [screenReaderPaginationLabel]="labels.screenReaderPaginationLabel"
+          [screenReaderPageLabel]="labels.screenReaderPageLabel"
+          [screenReaderCurrentLabel]="labels.screenReaderCurrentLabel"
+          (pageChange)="p = $event"
+        >
+        </pagination-controls>
+      </div>
     </div>
+  </div>
 </div>

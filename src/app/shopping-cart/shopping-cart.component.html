@@ -1,116 +1,154 @@
 <div class="mainDiv">
-    <div class="container mt-3">
-        <div class="row navigation-row">
-            <a routerLink="/">Home</a><span></span><a >Cart</a>
-        </div>
+  <div class="container mt-3">
+    <div class="row navigation-row">
+      <a routerLink="/">Home</a><span></span><a>Cart</a>
     </div>
-    <div class="container mb-5">
-        <div class="row ">
-            <div class="col-lg-9 div-cart-left">
-                <div class="cart-header">
-                    <h5>Cart</h5>
-                    <span class="float-right" (click)="removeAll()"><i class="far fa-trash-alt"></i></span>
-                </div>
-                <div class="cart_header_th">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <span>Product Name</span>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="row">
-                                <div class="col-3">
-                                   <span> Unit Price </span> 
-                                </div>
-                                <div class="col-4 item_qty_th">
-                                   <span > Qty </span>
-                                </div>
-                                <div class="col-5">
-                                   <span> Subtotal </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-                <div class="item-row empty-cart" *ngIf="!productAddedTocart || productAddedTocart.length == 0">
-                    <h5> No items in cart</h5>
-                    <label >Looks like you have no items in your shopping cart.</label>
-                    <label >Click <a [routerLink]="['/home']" >here</a> to continue shopping.</label>
-                </div>
-                <div class="row item-row" *ngFor="let item of productAddedTocart">
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-6 prod-img">
-                                <img src="http://localhost:3000/api/uploads/products/{{item['pic']}}" alt="">
-                            </div>
-                            <div class="col-6 prod prod-info">
-                                {{item['name']}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                       <div class="row">
-                            <div class="col-3 prod prod-price">
-                                <p *ngIf="item['discount'] > 0" class="percent-discount">-{{item['discount']}}%</p>
-                                <p class="discount-price">Rs.{{item['discountPrice']}}</p>
-                                <p><del *ngIf="item['discount'] > 0">Rs.{{item['price']}}</del></p> 
-                            </div>
-                            <div class="col-4 col-sm-3 prod product-add-to-cart mt-0">
-                                <span class="">
-                                    <input type="hidden" class="max-value" value="{{item['qty']}}">
-                                    <input type="button" class="minus" value="-" (click)="cal($event , item['id'] )">
-                                    <input type="number" id="value" class="cart-value" min="0" max="100" value="{{item['Quantity']}}" readonly>
-                                    <input type="button" class="plus" value="+" (click)="cal($event , item['id'] )">
-                                </span>
-                            </div>
-                            <div class="col-3 prod prod-price">
-                                Rs.{{item['productSubTotal']}}
-                            </div>
-                            <div class="col-2 prod prod-delete">
-                                <span class="" (click)="removeItem(item['id'])"><i class="far fa-trash-alt"></i></span>
-                            </div>
-                       </div>
-                    </div>
-                </div>
-                <!-- {{gg}} -->
-            </div>
-            <div class="col-lg-3 div-cart-right">
-                <div class="summary-header">
-                    <h5>Order Summary</h5>
-                </div>
-                <div class="summary-body mt-4">
-                    <div class="summary-line">
-                        <div class="row">
-                            <div class="col text-left">
-                                {{totItems}} items
-                            </div> 
-                            <div class="col text-right">
-                                Rs.{{totCost}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="summary-line">
-                        <div class="row">
-                            <div class="col text-left">
-                                Delivery fee
-                            </div> 
-                            <div class="col text-right">
-                                Rs.{{fee}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="summary-line mt-4 totCost-text">
-                        <div class="row">
-                            <div class="col text-left">
-                                Total Cost
-                            </div> 
-                            <div class="col text-right">
-                                Rs.{{totFee}}
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-proceed mt-5" (click)="proceedOrder()" [disabled]="productAddedTocart === null || productAddedTocart.length == 0 ? true : false" >PROCCED TO CHECKOUT</button>
-                </div>
-            </div>
+  </div>
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col-lg-9 div-cart-left">
+        <div class="cart-header">
+          <h5>Cart</h5>
+          <span class="float-right" (click)="removeAll()"
+            ><i class="far fa-trash-alt"></i
+          ></span>
         </div>
+        <div class="cart_header_th">
+          <div class="row">
+            <div class="col-lg-6">
+              <span>Product Name</span>
+            </div>
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-3">
+                  <span> Unit Price </span>
+                </div>
+                <div class="col-4 item_qty_th">
+                  <span> Qty </span>
+                </div>
+                <div class="col-5">
+                  <span> Subtotal </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="item-row empty-cart"
+          *ngIf="!productAddedTocart || productAddedTocart.length == 0"
+        >
+          <h5>No items in cart</h5>
+          <label>Looks like you have no items in your shopping cart.</label>
+          <label
+            >Click <a [routerLink]="['/home']">here</a> to continue
+            shopping.</label
+          >
+        </div>
+        <div class="row item-row" *ngFor="let item of productAddedTocart">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-6 prod-img">
+                <img [src]="url + '/uploads/products/' + item['pic']" alt="" />
+              </div>
+              <div class="col-6 prod prod-info">
+                {{ item["name"] }}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-3 prod prod-price">
+                <p *ngIf="item['discount'] > 0" class="percent-discount">
+                  -{{ item["discount"] }}%
+                </p>
+                <p class="discount-price">Rs.{{ item["discountPrice"] }}</p>
+                <p>
+                  <del *ngIf="item['discount'] > 0">Rs.{{ item["price"] }}</del>
+                </p>
+              </div>
+              <div class="col-4 col-sm-3 prod product-add-to-cart mt-0">
+                <span class="">
+                  <input
+                    type="hidden"
+                    class="max-value"
+                    value="{{ item['qty'] }}"
+                  />
+                  <input
+                    type="button"
+                    class="minus"
+                    value="-"
+                    (click)="cal($event, item['id'])"
+                  />
+                  <input
+                    type="number"
+                    id="value"
+                    class="cart-value"
+                    min="0"
+                    max="100"
+                    value="{{ item['Quantity'] }}"
+                    readonly
+                  />
+                  <input
+                    type="button"
+                    class="plus"
+                    value="+"
+                    (click)="cal($event, item['id'])"
+                  />
+                </span>
+              </div>
+              <div class="col-3 prod prod-price">
+                Rs.{{ item["productSubTotal"] }}
+              </div>
+              <div class="col-2 prod prod-delete">
+                <span class="" (click)="removeItem(item['id'])"
+                  ><i class="far fa-trash-alt"></i
+                ></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- {{gg}} -->
+      </div>
+      <div class="col-lg-3 div-cart-right">
+        <div class="summary-header">
+          <h5>Order Summary</h5>
+        </div>
+        <div class="summary-body mt-4">
+          <div class="summary-line">
+            <div class="row">
+              <div class="col text-left">{{ totItems }} items</div>
+              <div class="col text-right">Rs.{{ totCost }}</div>
+            </div>
+          </div>
+          <div class="summary-line">
+            <div class="row">
+              <div class="col text-left">
+                Delivery fee
+              </div>
+              <div class="col text-right">Rs.{{ fee }}</div>
+            </div>
+          </div>
+          <div class="summary-line mt-4 totCost-text">
+            <div class="row">
+              <div class="col text-left">
+                Total Cost
+              </div>
+              <div class="col text-right">Rs.{{ totFee }}</div>
+            </div>
+          </div>
+          <button
+            class="btn-proceed mt-5"
+            (click)="proceedOrder()"
+            [disabled]="
+              productAddedTocart === null || productAddedTocart.length == 0
+                ? true
+                : false
+            "
+          >
+            PROCCED TO CHECKOUT
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
