@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { catchError, mapTo, tap } from "rxjs/operators";
-import { Observable, of, BehaviorSubject } from "rxjs";
+import { Observable, of, BehaviorSubject, throwError } from "rxjs";
 import { Tokens } from "../Models/Token";
 import { User } from "../Models/user";
 import decode from "jwt-decode";
+import * as moment from "moment";
 
 import { environment } from "../../environments/environment";
 
@@ -25,9 +26,12 @@ export class AuthService {
   private _updateprofileUrl = this.url + "updateprofile";
   private _updatepassword = this.url + "updatepassword";
 
-  user$: Observable<User>;
-
-  private loggedUser: string;
+  private token: string;
+  private tokenTimer: any;
+  private userId: string;
+  private userName: string;
+  private role: string;
+  private isAuthenticated = false;
 
   private newLogin = new BehaviorSubject(false);
   newLoginStatus = this.newLogin.asObservable();
@@ -40,15 +44,89 @@ export class AuthService {
   confirmAccount(details) {
     return this.http.post<any>(this._confirmEmailUrl, { details: details });
   }
-  loginUser(user): Observable<boolean> {
+  loginUser(user): Observable<any> {
     return this.http.post<any>(this._loginUrl, user).pipe(
-      tap((token) => this.doLoginUser(user.uName, token)),
+      tap((res) => {
+        const token = res.jwtToken;
+        this.token = token;
+
+        if (token) {
+          const expiresInDuration = res.expiresIn;
+          this.setAuthTimer(expiresInDuration);
+
+          this.userId = res._uid;
+          this.userName = res.userName;
+          this.role = res.role;
+
+          const now = new Date();
+          const expirationDate = new Date(
+            now.getTime() + expiresInDuration * 1000
+          );
+
+          console.log(expirationDate);
+
+          this.saveAuthData(
+            token,
+            expirationDate,
+            this.userId,
+            this.userName,
+            this.role
+          );
+          // this._router.navigate(['/dashboard'])
+        }
+      }),
       mapTo(true),
-      catchError((error) => {
-        alert(error.error);
-        return of(false);
-      })
+      catchError(this.errorHandler)
     );
+  }
+
+  private setAuthTimer(duration: number) {
+    this.tokenTimer = setTimeout(() => {
+      this.logout();
+    }, duration * 1000);
+  }
+
+  private saveAuthData(
+    token: string,
+    expirationDate: Date,
+    userId: String,
+    userName: string,
+    role: string
+  ) {
+    localStorage.setItem("token", token);
+    localStorage.setItem("expiration", expirationDate.toISOString());
+    localStorage.setItem(
+      "userAuth",
+      JSON.stringify({ userId: userId, userName: userName, role: role })
+    );
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error || "Something went wrong.Please try again later.");
+  }
+
+  getLoginStatus(newLoginInstance: boolean) {
+    //3
+    this.newLogin.next(newLoginInstance);
+  }
+
+  checkAuthorization(): boolean {
+    //4
+    const user = this.getUserAuth();
+
+    if (this.loggedIn()) {
+      if (this.getUserAuth()) {
+        if (user.role === "admin") {
+          // console.log("admin " + true);
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  getUserAuth() {
+    return JSON.parse(localStorage.getItem("userAuth"));
   }
 
   getbasicuserdetailsbyuid() {
@@ -62,35 +140,37 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("token");
-    this.getLoginStatus(true);
+    this.token = null;
+    this.isAuthenticated = false;
+    this.clearAuthData();
+    this.userId = null;
+    clearTimeout(this.tokenTimer);
+    this.getLoginStatus(true); //5
     this._router.navigate(["/login"]);
+  }
 
-    // const data : User = {
-    //   uid: user.uid,
-    //   email: user.email,
-    //   roles: {
-    //     customer: true,
-    //     admin:false
-    //   }
-    // }
+  private clearAuthData() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("expiration");
+    localStorage.removeItem("userAuth");
   }
 
   getPermisionUser() {
     return this.http.get<any>(this._getPermisionUserUrl);
   }
 
+  getPermision() {
+    return !!this.getPermisionUser();
+  }
+
   loggedIn() {
+    if (!!localStorage.getItem("token")) {
+      var now = moment(new Date());
+      var end = moment(localStorage.getItem("expiration"));
+      var duration = moment.duration(end.diff(now, "seconds"));
+      this.setAuthTimer(duration["_milliseconds"]);
+    }
     return !!localStorage.getItem("token");
-  }
-
-  doLoginUser(username: string, tokens: Tokens) {
-    this.loggedUser = username;
-    this.storeToken(tokens);
-  }
-
-  storeToken(token: Tokens) {
-    localStorage.setItem("token", token.jwtToken);
   }
 
   getToken() {
@@ -105,24 +185,5 @@ export class AuthService {
     //const gg = decode(localStorage.getItem('token'))
     //console.log(gg.subject[0].userName)
     return decode(localStorage.getItem("token"));
-  }
-  checkAuthorization(): boolean {
-    if (this.loggedIn()) {
-      const user = this.decode();
-
-      if (user !== undefined || user === null) {
-        if (user.subject[0].role === "admin") {
-          console.log("admin accessed");
-          return true;
-        }
-      }
-    }
-
-    console.log("admin denied");
-    return false;
-  }
-
-  getLoginStatus(newLoginInstance: boolean) {
-    this.newLogin.next(newLoginInstance);
   }
 }
